@@ -36,6 +36,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $bezorgen_afhalen = checkinp($_POST["bezorgen-afhalen"]);
     }
+    if(empty($_POST["datum"])){
+        $datum_empty = "U moet een datum selecteren!";
+    } else{
+        $datum = checkinp($_POST["datum"]);
+    }
 
     }
  function checkinp ($input) {
@@ -53,17 +58,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             Postcode: <input type="text" name="postcode"><br><br>
             Plaats: <input type="text" name="plaats"><br><br>
             Bezorgen: <input type="radio" name="bezorgen-afhalen" value="bezorgen"> afhalen: <input type="radio" name="bezorgen-afhalen" value="afhalen"><br><br>
-            Datum: <input type="time" name="datum">
+            Datum: <input type="datetime-local" name="datum"><br><br>
             <input type="submit">
 
         </form>
         <?php 
         echo "<h3>These are your things:</h3> <br>";
         echo "Dit is je naam: " .$naam. "<br>";
-        echo "Dit is je adres: ". $adres. "<br>";
+        echo "Dit is je adres: ".$adres. "<br>";
         echo "Dit is je postcode: ".$postcode. "<br>";
         echo "Dit is je plaats: ".$plaats. "<br>";
         echo "Bezorgen of afhalen: ".$bezorgen_afhalen. "<br>";
+        echo "Dit is je datum: ".$datum. " " .date("l"); "<br>";
         
         ?>
    
