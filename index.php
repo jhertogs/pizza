@@ -53,6 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             Postcode: <input type="text" name="postcode"><br><br>
             Plaats: <input type="text" name="plaats"><br><br>
             Bezorgen: <input type="radio" name="bezorgen-afhalen" value="bezorgen"> afhalen: <input type="radio" name="bezorgen-afhalen" value="afhalen"><br><br>
+            Datum: <input type="time" name="datum">
             <input type="submit">
 
         </form>
