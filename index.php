@@ -62,6 +62,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <input type="submit">
 
         </form>
+        <h3>the pizza's</h3>
+        <form> 
+            Pizza margherita: <input type="number" min="0" max="10"><br><br>
+            Pizza funghi: <input type="number" min="0" max="10"><br><br>
+            Pizza marina: <input type="number" min="0" max="10"><br><br>
+            Pizza hawaii: <input type="number" min="0" max="10"><br><br>
+            Pizza quattro formaggi: <input type="number" min="0" max="10"><br><br>
+        </form>
         <?php 
         echo "<h3>These are your things:</h3> <br>";
         echo "Dit is je naam: " .$naam. "<br>";
