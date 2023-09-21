@@ -67,8 +67,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             Pizza margherita: <input type="number" min="0" max="10"><br><br>
             Pizza funghi: <input type="number" min="0" max="10"><br><br>
             Pizza marina: <input type="number" min="0" max="10"><br><br>
-            Pizza hawaii: <input type="number" min="0" max="10"><br><br>
+            Pizza hawaii: <input type="number" min="0" max="10" name=""><br><br>
             Pizza quattro formaggi: <input type="number" min="0" max="10"><br><br>
+            <input type="sumbit" name="">
         </form>
         <?php 
         echo "<h3>These are your things:</h3> <br>";
@@ -78,6 +79,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         echo "Dit is je plaats: ".$plaats. "<br>";
         echo "Bezorgen of afhalen: ".$bezorgen_afhalen. "<br>";
         echo "Dit is je datum: ".$datum. " " .date("l"); "<br>";
+        echo "<br><br>";
+        echo "<h3>These are your pizza's: </h3>". "<br>";
+        
+
+        
         
         ?>
    
