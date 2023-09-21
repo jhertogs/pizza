@@ -4,9 +4,9 @@
 
     </head>
     <?php 
-$naam = $adres = $postcode = $plaats = $besteldatum = $bezorgen_afhalen = "";
+$naam = $adres = $postcode = $plaats = $datum = $bezorgen_afhalen = "";
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if(isset($_POST["submit"])){
     if(empty($_POST["naam"])){
         $naam_empty = "U moet een naam invullen!";
     } else{
@@ -43,6 +43,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     }
+
+    if(isset($_POST["submit"])){
+
+    }
+
+
  function checkinp ($input) {
         $input = trim($input);
         $input = stripslashes($input);
@@ -59,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             Plaats: <input type="text" name="plaats"><br><br>
             Bezorgen: <input type="radio" name="bezorgen-afhalen" value="bezorgen"> afhalen: <input type="radio" name="bezorgen-afhalen" value="afhalen"><br><br>
             Datum: <input type="datetime-local" name="datum"><br><br>
-            <input type="submit">
+            <input type="submit" name="submit">
 
         </form>
         <h3>the pizza's</h3>
@@ -69,7 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             Pizza marina: <input type="number" min="0" max="10"><br><br>
             Pizza hawaii: <input type="number" min="0" max="10" name=""><br><br>
             Pizza quattro formaggi: <input type="number" min="0" max="10"><br><br>
-            <input type="sumbit" name="">
+            <input type="submit">
         </form>
         <?php 
         echo "<h3>These are your things:</h3> <br>";
