@@ -5,6 +5,10 @@
     </head>
     <?php 
 $naam = $adres = $postcode = $plaats = $datum = $bezorgen_afhalen = "";
+$piz_marg = 12.50; $piz_fung = 12.50; $piz_mari = 13.95; $piz_hawi = 11.50; $piz_quat = 14.50;
+$amount_marg = $amount_fung = $amount_mari = $amount_hawi = $amount_quat = 0.00;
+$price_margs = $price_fungis = $price_maris = $price_hawis = $price_quats = 0.00;
+$day = "";
 
 if(isset($_POST["submit"])){
     if(empty($_POST["naam"])){
@@ -40,11 +44,27 @@ if(isset($_POST["submit"])){
         $datum_empty = "U moet een datum selecteren!";
     } else{
         $datum = checkinp($_POST["datum"]);
+        $day = date("l");
     }
 
     }
 
-    if(isset($_POST["submit"])){
+    if(isset($_POST["submit2"])){
+        $amount_marg = floatval($_POST["marg"]);
+        $amount_fung = floatval($_POST["fung"]);
+        $amount_mari = floatval($_POST["mari"]);
+        $amount_hawi = floatval($_POST["hawi"]);
+        $amount_quat = floatval($_POST["quat"]);
+
+        $price_margs = $amount_marg * $piz_marg;
+        $price_fungis = $amount_fung * $piz_fung;
+        $price_maris = $amount_mari * $piz_mari;
+        $price_hawis = $amount_hawi * $piz_hawi;
+        $price_quats = $amount_quat * $piz_quat;
+
+        $totalprice = $price_fungis + $price_hawis + $price_margs + $price_maris + $price_quats;
+
+
 
     }
 
@@ -69,13 +89,13 @@ if(isset($_POST["submit"])){
 
         </form>
         <h3>the pizza's</h3>
-        <form> 
-            Pizza margherita: <input type="number" min="0" max="10"><br><br>
-            Pizza funghi: <input type="number" min="0" max="10"><br><br>
-            Pizza marina: <input type="number" min="0" max="10"><br><br>
-            Pizza hawaii: <input type="number" min="0" max="10" name=""><br><br>
-            Pizza quattro formaggi: <input type="number" min="0" max="10"><br><br>
-            <input type="submit">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post"> 
+            Pizza margherita: <input type="number" min="0" max="10" name="marg"><br><br>
+            Pizza funghi: <input type="number" min="0" max="10" name="fung"><br><br>
+            Pizza marina: <input type="number" min="0" max="10" name="mari"><br><br>
+            Pizza hawaii: <input type="number" min="0" max="10" name="hawi"><br><br>
+            Pizza quattro formaggi: <input type="number" min="0" max="10" name="quat"><br><br>
+            <input type="submit" name="submit2">
         </form>
         <?php 
         echo "<h3>These are your things:</h3> <br>";
@@ -84,9 +104,15 @@ if(isset($_POST["submit"])){
         echo "Dit is je postcode: ".$postcode. "<br>";
         echo "Dit is je plaats: ".$plaats. "<br>";
         echo "Bezorgen of afhalen: ".$bezorgen_afhalen. "<br>";
-        echo "Dit is je datum: ".$datum. " " .date("l"); "<br>";
+        echo "Dit is je datum: ".$datum. " ". $day ."<br>";
         echo "<br><br>";
         echo "<h3>These are your pizza's: </h3>". "<br>";
+        echo "You ordered". " " .$amount_marg. " "."Pizza margherita(s)". " "  ."Price:". " " .$price_margs. "<br><br>";
+        echo "You ordered". " " .$amount_fung. " "."Pizza margherita(s)". " "  ."Price:". " " .$price_fungis."<br><br>";
+        echo "You ordered". " ".$amount_mari. " "."Pizza margherita(s)".  " "  ."Price:". " " .$price_maris."<br><br>";
+        echo "You ordered". " " .$amount_hawi." " ."Pizza margherita(s)". " "  ."Price:". " " .$price_hawis."<br><br>";
+        echo "You ordered". " " .$amount_quat." " ."Pizza margherita(s)". " " ."Price:". " " .$price_quats."<br><br>";
+        
         
 
         
