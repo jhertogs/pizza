@@ -63,7 +63,7 @@ if(isset($_POST["submit"])){
             $price_maris = $amount_mari * 7.50;
             $price_hawis = $amount_hawi * 7.50;
             $price_quats = $amount_quat * 7.50; 
-        
+            $totalprice = $price_fungis + $price_hawis + $price_margs + $price_maris + $price_quats;
         }  
         else{
             $price_margs = $amount_marg * $piz_marg;
@@ -71,6 +71,7 @@ if(isset($_POST["submit"])){
             $price_maris = $amount_mari * $piz_mari;
             $price_hawis = $amount_hawi * $piz_hawi;
             $price_quats = $amount_quat * $piz_quat;
+            $totalprice = $price_fungis + $price_hawis + $price_margs + $price_maris + $price_quats;
         }
         $totalprice = $price_fungis + $price_hawis + $price_margs + $price_maris + $price_quats;
         if(($day == "Friday")&& ($totalprice > 20)){
@@ -79,6 +80,8 @@ if(isset($_POST["submit"])){
             $price_maris = ($amount_mari*$piz_mari)-(($amount_mari * $piz_mari)/100)*15;
             $price_hawis = ($amount_hawi*$piz_hawi)-(($amount_hawi * $piz_hawi)/100)*15;
             $price_quats = ($amount_quat*$piz_quat)-(($amount_quat * $piz_quat)/100)*15;
+            $totalprice = $price_fungis + $price_hawis + $price_margs + $price_maris + $price_quats;
+            
         }
     }
 
@@ -91,7 +94,7 @@ if(isset($_POST["submit"])){
 ?>
     <body> 
         <h1>Input your things thanks :3</h1>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+        <form  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
             Naam: <input type="text" name="naam"><br><br>
             Adres: <input type="text" name="adres"><br><br>
             Postcode: <input type="text" name="postcode"><br><br>
@@ -126,6 +129,7 @@ if(isset($_POST["submit"])){
         echo "You ordered". " ".$amount_mari. " "."Pizza marina(s)".  " "  ."Price:". " " .$price_maris."<br><br>";
         echo "You ordered". " " .$amount_hawi." " ."Pizza hawaii(s)". " "  ."Price:". " " .$price_hawis."<br><br>";
         echo "You ordered". " " .$amount_quat." " ."Pizza quattro formaggi(s)". " " ."Price:". " " .$price_quats."<br><br>";
+        echo "Total price:". " ". $totalprice;
         ?>
     </body>
     
