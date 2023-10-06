@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-
     </head>
     <?php 
 $totalprice = 0.00;
@@ -48,11 +47,7 @@ if(isset($_POST["submit"])){
         $datum = checkinp($_POST["datum"]);
         
     }
-    }
-
-    if(isset($_POST["submit2"])){
-        
-        $amount_marg = floatval($_POST["marg"]);
+    $amount_marg = floatval($_POST["marg"]);
         $amount_fung = floatval($_POST["fung"]);
         $amount_mari = floatval($_POST["mari"]);
         $amount_hawi = floatval($_POST["hawi"]);
@@ -84,6 +79,8 @@ if(isset($_POST["submit"])){
             
         }
     }
+
+    
 
  function checkinp ($input) {
         $input = trim($input);
