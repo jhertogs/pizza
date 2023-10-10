@@ -5,7 +5,7 @@
     </head>
     <?php 
 $totalprice = 0.00;
-$naam = $adres = $postcode = $plaats = $datum = $bezorgen_afhalen = "";
+$korting_msg= $naam = $adres = $postcode = $plaats = $datum = $bezorgen_afhalen = "";
 $piz_marg = 12.50; $piz_fung = 12.50; $piz_mari = 13.95; $piz_hawi = 11.50; $piz_quat = 14.50;
 $amount_marg = $amount_fung = $amount_mari = $amount_hawi = $amount_quat = 0.00;
 $price_margs = $price_fungis = $price_maris = $price_hawis = $price_quats = 0.00;
@@ -25,6 +25,7 @@ if(isset($_POST["submit"])){
             $price_hawis = $amount_hawi * 7.50;
             $price_quats = $amount_quat * 7.50; 
             $totalprice = $price_fungis + $price_hawis + $price_margs + $price_maris + $price_quats;
+            $korting_msg = "Maandag alle pizza's 7,50$!";
         }  
         else{
             $price_margs = $amount_marg * $piz_marg;
@@ -33,6 +34,7 @@ if(isset($_POST["submit"])){
             $price_hawis = $amount_hawi * $piz_hawi;
             $price_quats = $amount_quat * $piz_quat;
             $totalprice = $price_fungis + $price_hawis + $price_margs + $price_maris + $price_quats;
+            $korting_msg = "Geen kortingen deze dag.";
         }
         $totalprice = $price_fungis + $price_hawis + $price_margs + $price_maris + $price_quats;
         if(($day == "Friday")&& ($totalprice > 20)){
@@ -42,6 +44,7 @@ if(isset($_POST["submit"])){
             $price_hawis = ($amount_hawi*$piz_hawi)-(($amount_hawi * $piz_hawi)/100)*15;
             $price_quats = ($amount_quat*$piz_quat)-(($amount_quat * $piz_quat)/100)*15;
             $totalprice = $price_fungis + $price_hawis + $price_margs + $price_maris + $price_quats;
+            $korting_msg = "Vrijdag alle pizza's 15% korting!";
             
         }
     if(empty($_POST["naam"])){
@@ -112,6 +115,7 @@ if(isset($_POST["submit"])){
 
         <?php 
         echo "<h3>These are your things:</h3> <br>";
+        echo $korting_msg. "<br>";
         echo "Dit is je naam: " .$naam. "<br>";
         echo "Dit is je adres: ".$adres. "<br>";
         echo "Dit is je postcode: ".$postcode. "<br>";
