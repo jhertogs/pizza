@@ -4,10 +4,10 @@
         <title>Pizza di php</title>
     </head>
     <?php 
-$totalprice = 0.00;
+
 $bezorg_msg= $bezorgen_afhalen_empty= $korting_msg= $naam = $adres = $postcode = $plaats = $datum = $bezorgen_afhalen = "";
 $bezorgen = $piz_marg = 12.50; $piz_fung = 12.50; $piz_mari = 13.95; $piz_hawi = 11.50; $piz_quat = 14.50;
-$amount_marg = $amount_fung = $amount_mari = $amount_hawi = $amount_quat = 0.00;
+$totalprice = $amount_marg = $amount_fung = $amount_mari = $amount_hawi = $amount_quat = 0.00;
 $price_margs = $price_fungis = $price_maris = $price_hawis = $price_quats = 0.00;
 $day = date("l");
 #$day = "Monday";
@@ -56,7 +56,7 @@ if(isset($_POST["submit"])){
         $datum = checkinp($_POST["datum"]);
         
     }
-    $amount_marg = floatval($_POST["marg"]);
+        $amount_marg = floatval($_POST["marg"]);
         $amount_fung = floatval($_POST["fung"]);
         $amount_mari = floatval($_POST["mari"]);
         $amount_hawi = floatval($_POST["hawi"]);
@@ -102,7 +102,7 @@ if(isset($_POST["submit"])){
       }
 ?>
     <body> 
-        <h1>Input your things thanks :3</h1>
+        <h1>Input your things thanks </h1>
         <form  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
             Naam: <input type="text" name="naam" required><br><br>
             Adres: <input type="text" name="adres" required><br><br>
@@ -120,7 +120,6 @@ if(isset($_POST["submit"])){
             <input type="submit" name="submit">
 
         </form>
-
         <?php 
         echo "<h3>These are your things:</h3> <br>";
         echo $korting_msg. "<br>";
