@@ -8,49 +8,16 @@ $day = date("l");
 #$day = "Monday";
 
 if(isset($_POST["submit"])){
-        
-    if(empty($_POST["naam"])){
-        $naam_empty = "U moet een naam invullen!";
-    } else{
-        $naam = checkinp($_POST["naam"]);
-    }
-
-    if(empty($_POST["adres"])){
-        $adres_empty = "U moet een adres invullen!";
-    } else{
-        $adres = checkinp($_POST["adres"]);
-    }
-
-    if(empty($_POST["postcode"])){
-        $postcode_empty = "U moet een postcode invullen!";
-    } else{
-        $postcode = checkinp($_POST["postcode"]);
-    }
-
-    if(empty($_POST["plaats"])){
-        $plaats_empty = "U moet een plaats invullen!";
-    } else{
-        $plaats = checkinp($_POST["plaats"]);
-    }
-
+    $naam = checkinp($_POST["naam"]);
+    $adres = checkinp($_POST["adres"]);
+    $postcode = checkinp($_POST["postcode"]);
+    $plaats = checkinp($_POST["plaats"]);
+    $datum = checkinp($_POST["datum"]);
     if(isset($_POST["bezorgen-afhalen"]) && $_POST["bezorgen-afhalen"] == "bezorgen"){
         $bezorgen = 5.00;
         $bezorg_msg="(+ 5$ bezorg kosten)";
     }
 
-    if (empty($_POST["bezorgen-afhalen"])){
-        $bezorgen_afhalen_empty = "<p><font color=red>U moet afhalen of bezorgen selecteeren</font></p>";
-    } else{
-        $bezorgen_afhalen = checkinp($_POST["bezorgen-afhalen"]);
-        $bezorgen_afhalen_empty = "";
-    }
-    
-    if(empty($_POST["datum"])){
-        $datum_empty = "U moet een datum selecteren!";
-    } else{
-        $datum = checkinp($_POST["datum"]);
-        
-    }
         $amount_marg = floatval($_POST["marg"]);
         $amount_fung = floatval($_POST["fung"]);
         $amount_mari = floatval($_POST["mari"]);
@@ -96,7 +63,7 @@ if(isset($_POST["submit"])){
         return $input;
       }
 
-      echo "<h3>These are your things:</h3> <br>";
+        echo "<h3>These are your things:</h3> <br>";
         echo $korting_msg. "<br>";
         echo "Dit is je naam: " .$naam. "<br>";
         echo "Dit is je adres: ".$adres. "<br>";

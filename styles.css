@@ -1,0 +1,37 @@
+*{
+    color:white;
+}
+
+body {
+    background-image: url('./imagess/bac.jpg') ;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    
+}
+nav{
+    height: 10vh;
+    border-bottom: white solid;
+    background-image: url('./imagess/Pizzaflag.png');
+    background-image: no-repeat;
+    background-size: 100vw;
+    
+}
+input{
+    color:black;
+}
+.formdiv{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.pizzadiv{
+    
+}
+.formtitle {
+    width:100%;
+    text-align: center;
+}
+.submit-btn {
+    margin-left: 60px;
+}
