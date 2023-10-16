@@ -3,10 +3,15 @@
     <head>
         <title>Pizza di php</title>
         <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+        
     </head>
     
     <body> 
-        <nav> </nav>
+        <nav><h2>Pizzaria di preprocessore</h2> </nav>
         
         <h1 class='formtitle'>Input your things thanks </h1>
         <form  action="echos.php" method="post">

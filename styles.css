@@ -17,6 +17,11 @@ nav{
     background-image: no-repeat;
     background-size: 100vw;
     
+    
+}
+h2{
+    font-family: 'Dancing Script', cursive;
+    margin-left: 10px;
 }
 input{
     color:black;
