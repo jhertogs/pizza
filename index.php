@@ -7,17 +7,57 @@
     
     <body> 
         <nav> </nav>
-        <div class='formdiv'>
+        
         <h1 class='formtitle'>Input your things thanks </h1>
         <form  action="echos.php" method="post">
         <h3>the pizza's</h3>
-         
-            <div class="pizzadiv">Pizza margherita: <input type="number" min="0" max="10" name="marg"><br><br> </div>
-            <div class="pizzadiv">Pizza funghi: <input type="number" min="0" max="10" name="fung"><br><br></div>
-            <div class="pizzadiv">Pizza marina: <input type="number" min="0" max="10" name="mari"><br><br></div>
-            <div class="pizzadiv">Pizza hawaii: <input type="number" min="0" max="10" name="hawi"><br><br></div>
-            <div class="pizzadiv">Pizza quattro formaggi: <input type="number" min="0" max="10" name="quat"><br><br></div>
-        
+        <div class='formdiv'>
+            <div class="pizzadiv">
+                <p>Pizza margherita:</p>
+                <img src="./imagess/pizza-margherita.jpg" class="pizza-imgs">
+                <div class="pizza-inp-div">
+                    <p class="pizza-price">€12.50 per pizza.</p>
+                    <input type="number" min="0" max="10" name="marg" class="pizza-inp"><br><br>
+                </div>
+            </div>
+
+            <div class="pizzadiv">
+                <p>Pizza funghi: </p>
+                <img src="./imagess/pizza-funghi.jpg" class="pizza-imgs">
+                <div class="pizza-inp-div">
+                    <p class="pizza-price">€12.50 per pizza.</p>
+                    <input type="number" min="0" max="10" name="fung" class="pizza-inp"><br><br>
+                </div>
+            </div>
+
+            <div class="pizzadiv">
+                <p>Pizza marina: </p>
+                <img src="./imagess/pizza-marina.jpg" class="pizza-imgs">
+                <div class="pizza-inp-div">
+                    <p class="pizza-price">€13.95 per pizza.</p>
+                    <input type="number" min="0" max="10" name="mari" class="pizza-inp"><br><br>
+                </div>
+            </div>
+
+            <div class="pizzadiv">
+                <p>Pizza hawaii: </p>
+                <img src="./imagess/pizza-hawaii.jpg" class="pizza-imgs">
+                <div class="pizza-inp-div">
+                    <p class="pizza-price">€11.50 per pizza.</p>
+                    <input type="number" min="0" max="10" name="hawi" class="pizza-inp"><br><br>
+                </div>
+            </div>
+
+            <div class="pizzadiv">
+                <p>Pizza quattro formaggi: </p>
+                <img src="./imagess/pizza-formaggi.jpg" class="pizza-imgs">
+                <div class="pizza-inp-div">
+                    <p class="pizza-price">€14.50 per pizza.</p>
+                    <input type="number" min="0" max="10" name="quat" class="pizza-inp"><br><br>
+                </div>
+            </div>
+        </div>
+
             Naam: <input type="text" name="naam" required><br><br>
             Adres: <input type="text" name="adres" required><br><br>
             Postcode: <input type="text" name="postcode" required><br><br>
@@ -26,9 +66,8 @@
             Datum: <input type="datetime-local" name="datum" required><br><br>
             <input type="submit" name="submit" class="submit-btn">
             
-
+        
         </form>
-        </div>
     </body>
     
 </html>
