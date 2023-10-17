@@ -1,6 +1,7 @@
 *{
     color:white;
-     /*border: blue solid; */
+     border: blue solid; 
+     font-weight: normal;
 }
 
 body {
@@ -19,6 +20,12 @@ nav{
     
     
 }
+.formtitle {
+    width:100%;
+    text-align: center;
+    font-size: 50px;
+    
+}
 h2{
     font-family: 'Dancing Script', cursive;
     margin-left: 10px;
@@ -32,6 +39,10 @@ input{
     flex-wrap: wrap;
     text-align: center;
 }
+.pizza-name{
+    font-size: 25px;
+}
+
 .pizzadiv{
  width: 450px;
  height: 500px;
@@ -57,12 +68,26 @@ input{
 .pizza-price{
     margin:0%;
     margin-right: 10px;
+    font-size: 20px;
 }
-.formtitle {
-    width:100%;
-    text-align: center;
-    font-size: 50px;
-}
+
 .submit-btn {
     margin-left: 60px;
+}
+
+h3{
+    font-size: 25px;
+}
+.inline{
+    display: inline;
+}
+.info-center{
+    display:flex;
+    justify-content: center;
+}
+.user-info-form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 300px;
 }

@@ -1,8 +1,8 @@
 <?php 
 
 $bezorg_msg= $bezorgen_afhalen_empty= $korting_msg= $naam = $adres = $postcode = $plaats = $datum = $bezorgen_afhalen = "";
-$bezorgen = $piz_marg = 12.50; $piz_fung = 12.50; $piz_mari = 13.95; $piz_hawi = 11.50; $piz_quat = 14.50;
-$totalprice = $amount_marg = $amount_fung = $amount_mari = $amount_hawi = $amount_quat = 0.00;
+$piz_marg = 12.50; $piz_fung = 12.50; $piz_mari = 13.95; $piz_hawi = 11.50; $piz_quat = 14.50;
+$bezorgen= $totalprice = $amount_marg = $amount_fung = $amount_mari = $amount_hawi = $amount_quat = 0.00;
 $price_margs = $price_fungis = $price_maris = $price_hawis = $price_quats = 0.00;
 $day = date("l");
 #$day = "Monday";
