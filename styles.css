@@ -1,12 +1,12 @@
 *{
     color:white;
-     border: blue solid; 
+    /* border: blue solid; */
      font-weight: normal;
 }
 
 body {
     background-image: url('./imagess/bac.jpg') ;
-    background-size: 100%;
+    background-size: 111%;
     background-repeat: repeat-y;
     font-family: 'Fredericka the Great', serif;
     
@@ -19,6 +19,11 @@ nav{
     background-size: 100vw;
     
     
+}
+hr{
+    color:white;
+    background-color: white;
+    height: 5px;
 }
 .formtitle {
     width:100%;
@@ -90,4 +95,7 @@ h3{
     flex-wrap: wrap;
     justify-content: center;
     width: 300px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border: white solid;
 }

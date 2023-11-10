@@ -54,7 +54,7 @@ if(isset($_POST["submit"])){
         }
     }
 
-    
+
 
  function checkinp ($input) {
         $input = trim($input);

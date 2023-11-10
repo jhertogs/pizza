@@ -65,6 +65,7 @@
                 </div>
             </div>
         </div>
+<hr>
     <div class=info-center>
         <div class="user-info-form">
         <h3 class="h3"> Please fill out this form.</h3>
