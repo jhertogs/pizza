@@ -18,7 +18,7 @@
         <nav><h2>Pizzaria di preprocessore 🍕</h2> </nav>
         
         <h1 class='formtitle'>Our quality pizza's! </h1>
-        <form  action="echos.php" method="post">
+        <form  action="ai.php" method="post">
         <div class='formdiv'>
             <div class="pizzadiv">
                 <p class="pizza-name">Pizza margherita:</p>

@@ -1,5 +1,5 @@
 <?php 
-
+/* 
 $bezorg_msg= $bezorgen_afhalen_empty= $korting_msg= $naam = $adres = $postcode = $plaats = $datum = $bezorgen_afhalen = "";
 
 
@@ -97,4 +97,5 @@ if(isset($_POST["submit"])){
         echo "You ordered". " " .number_format($amount_hawi,2,",",".")." " ."Pizza hawaii(s)". " "  ."Price:". " " .number_format($price_hawis,2,",",".")."<br><br>";
         echo "You ordered". " " .number_format($amount_quat,2,",",".")." " ."Pizza quattro formaggi(s)". " " ."Price:". " " .number_format($price_quats,2,",",".")."<br><br>";
         echo "Total price:". " ". number_format($totalprice,2,",","."). " $bezorg_msg";
-?>
+*/
+        ?>
