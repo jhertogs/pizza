@@ -10,15 +10,38 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fredericka+the+Great&display=swap" rel="stylesheet">
-
-        
     </head>
-    
-    <body> 
+<body> 
         <nav><h2>Pizzaria di preprocessore 🍕</h2> </nav>
-        
+        <h1 class='formtitle'>Our quality pizza's! </h1>
+        <form  action="ai.php" method="post"> 
+            <div class="formdiv">
+            <?php 
+                include 'array.php';
+                foreach ($pizzaDetails as $key => $pizza) {
+                    echo "<div class='pizzadiv'>";
+                    echo"<p class='pizza-name'>" .$pizza['name'];
+                    echo"</p>";
+                    echo"<img src='./imagess/placeholder.jpg' class='pizza-imgs'>";
+                    echo"<div class='pizza-inp-div'>";
+                    echo"<p class='pizza-price'>" .$pizza['price'];
+                    echo"</p>";
+                    echo"<input type='number' min='0' max='10' name='$key' class='pizza-inp'> <br><br> ";
+                    echo"</div>";
+                    echo"</div>";   
+                } 
+            ?>
+            </div>
+        </form>
+
+
+
+        <!-- 
+        <body> 
+        <nav><h2>Pizzaria di preprocessore 🍕</h2> </nav>
         <h1 class='formtitle'>Our quality pizza's! </h1>
         <form  action="ai.php" method="post">
+
         <div class='formdiv'>
             <div class="pizzadiv">
                 <p class="pizza-name">Pizza margherita:</p>
@@ -65,7 +88,8 @@
                 </div>
             </div>
         </div>
-<hr>
+        -->        
+    <hr>
     <div class=info-center>
         <div class="user-info-form">
         <h3 class="h3"> Please fill out this form.</h3>
@@ -82,7 +106,7 @@
                 <p class="inline">Place:</p> <input type="text" name="plaats" resquired><br><br>
            </div>
            <div>
-                <p class="inline">Deliver:</p> <input type="radio" name="bezorgen-afhalen" value="bezorgen"> <p class="inline">Pick up:</p> <input type="radio" name="bezorgen-afhalen" value="afhalen" checked="checked"><?php $bezorgen_afhalen_empty =""; echo $bezorgen_afhalen_empty; ?><br><br>
+                <p class="inline">Deliver:</p> <input type="radio" name="bezorgen" value="bezorgen" required> <p class="inline">Pick up:</p> <input type="radio" name="bezorgen" value="afhalen"><br><br>
            </div>
            <div>
                 <p class="inline">Date:</p> <input type="datetime-local" name="datum" required><br><br>
@@ -94,6 +118,6 @@
     </div>
         
         </form>
-    </body>
+</body>
     
 </html>

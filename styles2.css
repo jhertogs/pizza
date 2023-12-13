@@ -3,7 +3,11 @@
      /*border: blue solid; */
      font-weight: normal;
 }
-
+.nopiz{
+    display: flex;
+    justify-content: center;
+    color: red;
+}
 h2{
     font-family: 'Dancing Script', cursive;
     margin-left: 10px;

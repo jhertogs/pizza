@@ -16,9 +16,10 @@
 <body>
     <nav><h2>Pizzaria di preprocessore 🍕</h2> </nav>
 <?php
-// Check if the form is submitted
+
+// checkt wanneer je op submit drukt.
 if (isset($_POST["submit"])) {
-    // Function to sanitize and validate input
+    // functie die ongewenste characters verwijderd
     function checkInput($input) {
         $input = trim($input);
         $input = stripslashes($input);
@@ -26,7 +27,7 @@ if (isset($_POST["submit"])) {
         return $input;
     }
 
-    // Array for pizza details
+    // Een multidimensional, associetive array die alle pizza informatie bewaardt
     $pizzaDetails = [
         'marg' => ['name' => 'Pizza Margherita', 'price' => 12.50],
         'fung' => ['name' => 'Pizza Funghi', 'price' => 12.50],
@@ -36,49 +37,63 @@ if (isset($_POST["submit"])) {
         
     ];
 
-    // Retrieve user input
+    // variabelen die user input bewaren
     $naam = checkInput($_POST["naam"]);
     $adres = checkInput($_POST["adres"]);
     $postcode = checkInput($_POST["postcode"]);
     $plaats = checkInput($_POST["plaats"]);
     $datum = checkInput($_POST["datum"]);
 
-    // Default values for delivery and discount messages
+    
     $bezorgen = 0.00;
     $bezorg_msg = "";
     $korting_msg = "";
+    $aantalpiz = 0.00;
+    $day = date("l");
 
-    // Retrieve pizza quantities
+    //als bezorgen word geselecteerd dan word 5 bij de prijs op gedaan en een message ge-echo'd
+    if ($_POST["bezorgen"] == "bezorgen") {
+        $bezorgen = 5.00;
+        $bezorg_msg = "<p>+ $5.00 bezorg kosten</p>";
+    } 
+    
+    
+    
+    // bewaard de hoeveelheid bestelde pizzas in de $amount array en in $aantalpiz voor een check.
     foreach ($pizzaDetails as $key => $pizza) {
         $amount[$key] = floatval($_POST[$key]);
+        $aantalpiz += $amount[$key];
+        
+    }
+    // checked of je meer dan 1 pizza hebt besteld.
+    if ($aantalpiz <= 0.00) {
+        echo "<h1 class='nopiz';>Bestel tenminste 1 pizza!</h1>";
+        exit;
     }
 
-    // Calculate pizza prices based on the day
-    $day = date("l");
-    $discount_percent = 15; // Discount percentage for Friday
-
     foreach ($pizzaDetails as $key => $pizza) {
-        $piz_prices[$key] = ($day == "Monday") ? 7.50 : $pizza['price'];
+        $piz_prices[$key] = ($day == "Monday") ? 7.50 : $pizza['price']; //als het maandag worden alle prijzen 7.50 anders blijven de prijzen hetzelfde.
         $prices[$key] = $amount[$key] * $piz_prices[$key];
     }
 
-    // Calculate total price without discounts
+    // alle on afgeprijsde (de originele waarden) in de array worden opgeteld om de totaalprijs te berekenen zonder kortingen.
     $totalprice = array_sum($prices) + $bezorgen;
 
-    // Check for discounts based on the day and total price
+    // zorg voor korting op maandag en vrijdag
     if ($day == "Monday") {
         $korting_msg = "<p><font color=green>Maandag alle pizza's 7,50$!</font></p>";
     } elseif ($day == "Friday" && $totalprice > 20) {
-        // Apply discount on Friday for orders over $20
+        // berekent de korting 
         foreach ($pizzaDetails as $key => $pizza) {
             $discountedPrice = $amount[$key] * $piz_prices[$key] * 0.85;
             $prices[$key] = $discountedPrice;
         }
         $totalprice = array_sum($prices) + $bezorgen;
-        $korting_msg = "<p class='kortingmsg'>Vrijdag alle pizza's 15% korting</p>";
+        $korting_msg = "<p class='kortingmsg'>Vrijdag alle pizza's 15% korting bij bestelling boven 20$!</p>";
     }
+    
 
-    // Display user information and order details
+    // de html echo's
     echo"<div class='textdiv1'>";
     echo "<h3>Thanks for your order! (:</h3> <br>";
     if (!empty($korting_msg)) {
@@ -92,7 +107,7 @@ if (isset($_POST["submit"])) {
     echo "Dit is je adres: " . $adres . "<br> <br>";
     echo "Dit is je postcode: " . $postcode . "<br> <br>";
     echo "Dit is je plaats: " . $plaats . "<br> <br>";
-    echo "Bezorgen of afhalen: " . checkInput($_POST["bezorgen-afhalen"]) . "<br> <br>";
+    echo "Bezorgen of afhalen: " . checkInput($_POST["bezorgen"]) .   "<br> <br>";
     echo "Dit is je datum: " . str_replace("T", " ", $datum) . " " . $day . "<br><br>";
     echo "<h3>These are your pizza's: </h3>" . "<br> <br>";
     echo"</p>";
@@ -108,6 +123,7 @@ if (isset($_POST["submit"])) {
     echo "<div class='textdiv2'>";
     echo "Total price: " . number_format($totalprice, 2, ",", ".") . " " . $bezorg_msg;
     echo "</div>";
+    echo $_POST["bezorgen"];
 }
 ?>
 </body>
