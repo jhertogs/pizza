@@ -12,7 +12,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fredericka+the+Great&display=swap" rel="stylesheet">
     </head>
 <body> 
-        <nav><h2>Pizzaria di preprocessore 🍕</h2> </nav>
+        <nav><h2>Pizzaria di preprocessore 🍕</h2> </nav>    
         <h1 class='formtitle'>Our quality pizza's! </h1>
         <form  action="ai.php" method="post"> 
             <div class="formdiv">
@@ -32,7 +32,6 @@
                 } 
             ?>
             </div>
-        </form>
 
 
 
@@ -117,7 +116,7 @@
         </div>
     </div>
         
-        </form>
+ </form>
 </body>
     
 </html>
