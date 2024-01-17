@@ -8,6 +8,7 @@ $pizzaDetails = [
     'mari' => ['name' => 'Pizza Marina', 'price' => 13.95],
     'hawi' => ['name' => 'Pizza Hawaii', 'price' => 11.50],
     'quat' => ['name' => 'Pizza Quattro Formaggi', 'price' => 14.50],
+    'je_dikke_moeder' => ['name' => 'Je Dikke Moeder', 'price' => 100000.00],
 ];
 
 
