@@ -125,6 +125,24 @@ if (isset($_POST["submit"])) {
     }catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
     }
+    try{
+        $sql = "INSERT INTO orders (customer_id, total_cost) VALUES (:customer_id, :total_cost)";
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(':customer_id', $last_id, PDO::PARAM_STR);
+        $stmt->bindParam(':total_cost', $totalprice, PDO::PARAM_STR);
+
+        $stmt->execute();
+        echo "this also works :3 yay";
+
+
+        
+
+
+    } catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+
     $conn = null;
     
 
