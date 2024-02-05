@@ -107,7 +107,7 @@ if (isset($_POST["submit"])) {
     }
 
     try {
-        $sql = "INSERT INTO Customers (name, address, postal_code, city) VALUES (:name, :address, :postal_code, :city)"; 
+        $sql = "INSERT INTO Customers (name, address, postal_code, city, date) VALUES (:name, :address, :postal_code, :city, :date)"; 
         $stmt = $pdo->prepare($sql);
 
         // Bind parameters
@@ -115,6 +115,7 @@ if (isset($_POST["submit"])) {
         $stmt->bindParam(':address', $adres, PDO::PARAM_STR);
         $stmt->bindParam(':postal_code', $postcode, PDO::PARAM_STR);
         $stmt->bindParam(':city', $plaats, PDO::PARAM_STR);
+        $stmt->bindParam(':date', $datum, PDO::PARAM_STR);
 
         // Execute the statement
         $stmt->execute();
