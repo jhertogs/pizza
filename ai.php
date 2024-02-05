@@ -93,6 +93,40 @@ if (isset($_POST["submit"])) {
         $korting_msg = "<p class='kortingmsg'> Friday all pizza's 15% discount (with orders above 20$)</p>";
     }
     
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "PizzaDB";
+
+    try {
+        $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        // set the PDO error mode to exception
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }  catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+
+    try {
+        $sql = "INSERT INTO Customers (name, address, postal_code, city) VALUES (:name, :address, :postal_code, :city)"; 
+        $stmt = $pdo->prepare($sql);
+
+        // Bind parameters
+        $stmt->bindParam(':name', $naam, PDO::PARAM_STR);
+        $stmt->bindParam(':address', $adres, PDO::PARAM_STR);
+        $stmt->bindParam(':postal_code', $postcode, PDO::PARAM_STR);
+        $stmt->bindParam(':city', $plaats, PDO::PARAM_STR);
+
+        // Execute the statement
+        $stmt->execute();
+        $last_id = $pdo->lastInsertId(); //store id?
+        echo "New record created successfully". " id: $last_id";
+        
+    }catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+    $conn = null;
+    
+
     
 
     // de html echo's
