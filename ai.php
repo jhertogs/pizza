@@ -66,6 +66,7 @@ if (isset($_POST["submit"])) {
         $aantalpiz += $amount[$key];
         
     }
+
     if ($aantalpiz <= 0.00) {
         echo "<h1 class='nopiz';>Order at least 1 pizza!</h1>";
         echo "<a href='index.php'> Go back </a>";
@@ -136,8 +137,24 @@ if (isset($_POST["submit"])) {
         echo "this also works :3 yay";
 
 
-        
+       
 
+    } catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+
+    try{
+        $sql = "INSERT INTO orders (customer_id, total_cost) VALUES (:customer_id, :total_cost)";
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(':customer_id', $last_id, PDO::PARAM_STR);
+        $stmt->bindParam(':total_cost', $totalprice, PDO::PARAM_STR);
+
+        $stmt->execute();
+        echo " aaaand this also works :3 yay";
+
+
+       
 
     } catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
@@ -145,8 +162,22 @@ if (isset($_POST["submit"])) {
 
     $conn = null;
     
+    //test thingus 
+   
+    $pushBestelling = array ();
 
-    
+    foreach ($pizzaDetails as $key => $pizza) {
+        if ( $_POST[$key] > 0) {
+            array_push($pushBestelling, $pizza['name'], $_POST[$key]);
+        }
+    }
+
+    foreach ($pushBestelling as $key => $name ) {
+
+        echo" $name";
+    }
+
+    print_r($pushBestelling);
 
     // de html echo's
     echo"<div class='textdiv1'>";
@@ -173,7 +204,7 @@ if (isset($_POST["submit"])) {
         echo "You ordered " . $amount[$key] . " " . $pizza['name'] . "(s) Price: " . number_format($prices[$key], 2, ",", ".") . "<br><br>";
     }
     echo "</div>";
-
+    
     
     echo "<div class='textdiv2'>";
     echo "Total price: " . number_format($totalprice, 2, ",", ".") . " " . $bezorg_msg;
