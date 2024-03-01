@@ -126,22 +126,7 @@ if (isset($_POST["submit"])) {
     }catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
     }
-    try{
-        $sql = "INSERT INTO orders (customer_id, total_cost) VALUES (:customer_id, :total_cost)";
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->bindParam(':customer_id', $last_id, PDO::PARAM_STR);
-        $stmt->bindParam(':total_cost', $totalprice, PDO::PARAM_STR);
-
-        $stmt->execute();
-        echo "this also works :3 yay";
-
-
-       
-
-    } catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
-    }
+    
 
     try{
         $sql = "INSERT INTO orders (customer_id, total_cost) VALUES (:customer_id, :total_cost)";
@@ -151,6 +136,7 @@ if (isset($_POST["submit"])) {
         $stmt->bindParam(':total_cost', $totalprice, PDO::PARAM_STR);
 
         $stmt->execute();
+        $last_id2 = $pdo->lastInsertId();
         echo " aaaand this also works :3 yay";
 
 
@@ -162,22 +148,57 @@ if (isset($_POST["submit"])) {
 
     $conn = null;
     
+
+    //nog een test thingusbadingus (heeft nieuwe table nodig 3: cuz it aint worke reeeee)
+    /*
+    try {
+
+        foreach ($pizzaDetails as $key => $pizza) {
+            if ( $_POST[$key] > 0) {
+                
+                $sql ="INSERT INTO ordered_pizzas, (pizza_margherita, pizza_Fungi, pizza_marina, pizza_hawaii, pizza_quattro_formaggi, pizza_je_dikke_moeder) VALUES ( :amounts)";
+                $stmt = $pdo->prepare($sql);
+
+                $stmt->bindparam(':amounts', $_POST[$key], PDO::PARAM_INT);
+
+                $stmt->execute();
+                echo "it works?!?!?!?!";
+               //array_push($pushBestelling, $pizza['name'], $_POST[$key]);
+         }
+     }
+    } catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+*/
+
+
     //test thingus 
    
     $pushBestelling = array ();
-
+    $db_pizzas = "";
     foreach ($pizzaDetails as $key => $pizza) {
         if ( $_POST[$key] > 0) {
             array_push($pushBestelling, $pizza['name'], $_POST[$key]);
         }
     }
+    $db_pizzas= implode(" ", $pushBestelling);
 
-    foreach ($pushBestelling as $key => $name ) {
+    try {
+        $sql ="INSERT INTO ordered_pizzas (Pizzas, order_id) VALUES (:db_pizzas, :order_id)";
+        $stmt = $pdo->prepare($sql);
 
-        echo" $name";
+        $stmt->bindparam(':db_pizzas', $db_pizzas, PDO::PARAM_STR);
+        $stmt->bindparam(':order_id', $last_id2, PDO::PARAM_INT);
+
+        $stmt->execute();
+    
+
+    } catch(PDOException $e) {
+        echo $sql . "<br>" . $e->getMessage();
     }
+    
 
-    print_r($pushBestelling);
+    
 
     // de html echo's
     echo"<div class='textdiv1'>";
