@@ -1,5 +1,5 @@
 *{
-    color:white;
+    
     /* border: blue solid; */
      font-weight: normal;
 }
@@ -9,7 +9,7 @@ body {
     background-size: 111%;
     background-repeat: repeat-y;
     font-family: 'Fredericka the Great', serif;
-    
+    color:white; 
 }
 nav{
     height: 10vh;
@@ -17,6 +17,7 @@ nav{
     background-image: url('./imagess/Pizzaflag.png');
     background-image: no-repeat;
     background-size: 100vw;
+    color:white; 
     
     
 }
@@ -98,4 +99,9 @@ h3{
     margin-bottom: 20px;
     padding-bottom: 5px;
     border: white solid;
+}
+.kortingmsg {
+    color: rgb(140, 220, 19);
+    text-align: center;
+    size: 100px;
 }

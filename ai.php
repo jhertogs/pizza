@@ -83,7 +83,7 @@ if (isset($_POST["submit"])) {
 
     // zorg voor korting op maandag en vrijdag
     if ($day == "Monday") {
-        $korting_msg = "<p><font color=green> Monday all pizza's 7,50$!</font></p>";
+        $korting_msg = "<p class='kortingmsg'> Monday all pizza's 7,50$!</p>";
     } elseif ($day == "Friday" && $totalprice > 20) {
         // berekent de korting 
         foreach ($pizzaDetails as $key => $pizza) {
@@ -120,8 +120,7 @@ if (isset($_POST["submit"])) {
 
         // Execute the statement
         $stmt->execute();
-        $last_id = $pdo->lastInsertId(); //store id?
-        echo "New record created successfully". " id: $last_id";
+        $last_id = $pdo->lastInsertId();
         
     }catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
@@ -137,7 +136,6 @@ if (isset($_POST["submit"])) {
 
         $stmt->execute();
         $last_id2 = $pdo->lastInsertId();
-        echo " aaaand this also works :3 yay";
 
 
        
@@ -147,30 +145,6 @@ if (isset($_POST["submit"])) {
     }
 
     $conn = null;
-    
-
-    //nog een test thingusbadingus (heeft nieuwe table nodig 3: cuz it aint worke reeeee)
-    /*
-    try {
-
-        foreach ($pizzaDetails as $key => $pizza) {
-            if ( $_POST[$key] > 0) {
-                
-                $sql ="INSERT INTO ordered_pizzas, (pizza_margherita, pizza_Fungi, pizza_marina, pizza_hawaii, pizza_quattro_formaggi, pizza_je_dikke_moeder) VALUES ( :amounts)";
-                $stmt = $pdo->prepare($sql);
-
-                $stmt->bindparam(':amounts', $_POST[$key], PDO::PARAM_INT);
-
-                $stmt->execute();
-                echo "it works?!?!?!?!";
-               //array_push($pushBestelling, $pizza['name'], $_POST[$key]);
-         }
-     }
-    } catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
-    }
-*/
-
 
     //test thingus 
    

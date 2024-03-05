@@ -14,9 +14,20 @@
 <body> 
         <nav><h2>Pizzaria di preprocessore 🍕</h2> </nav>    
         <h1 class='formtitle'>Our quality pizza's! </h1>
+        <?php $day = date("l");
+
+                if ($day == "Monday") {
+                    echo "<p class='kortingmsg'> Monday all pizza's 7,50$!</p>";
+
+                } elseif ($day == "Friday") {
+                    echo "<p class='kortingmsg'> Friday all pizza's 15% discount (with orders above 20$)</p>";
+
+                }
+        ?>
         <form  action="ai.php" method="post"> 
             <div class="formdiv">
             <?php 
+
                 include 'array.php';
                 foreach ($pizzaDetails as $key => $pizza) {
                     echo "<div class='pizzadiv'>";
