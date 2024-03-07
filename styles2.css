@@ -49,3 +49,19 @@ nav{
 p{
     padding-bottom: 5px;
 }
+.inlog-input{
+    display: flex;
+    flex-wrap: wrap;
+}
+.formdiv{
+    display: flex;
+    justify-content: center;
+}
+input {
+    margin-bottom: 50px;
+    color: black;
+}
+h1{
+    text-align: center;
+
+}

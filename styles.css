@@ -18,8 +18,13 @@ nav{
     background-image: no-repeat;
     background-size: 100vw;
     color:white; 
+    display: flex;
     
     
+    
+}
+.inloglink{
+    padding-left: 1330px;
 }
 hr{
     color:white;

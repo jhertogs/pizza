@@ -12,7 +12,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fredericka+the+Great&display=swap" rel="stylesheet">
     </head>
 <body> 
-        <nav><h2>Pizzaria di preprocessore 🍕</h2> </nav>    
+        <nav><h2>Pizzaria di preprocessore 🍕</h2> <a href="inlogpagina.php" class='inloglink'>Inloggen</a></nav>  
         <h1 class='formtitle'>Our quality pizza's! </h1>
         <?php $day = date("l");
 
@@ -39,8 +39,8 @@
                     echo"</p>";
                     echo"<input type='number' min='0' max='10' name='$key' class='pizza-inp'> <br><br> ";
                     echo"</div>";
-                    echo"</div>";   
-                } 
+                    echo"</div>";
+                }
             ?>
             </div>
 
@@ -104,16 +104,16 @@
         <div class="user-info-form">
         <h3 class="h3"> Please fill out this form.</h3>
             <div>
-                <p class="inline">Name:</p> <input type="text" name="naam" required><br><br>
+                <p class="inline">Name:</p> <input type="text" name="naam" maxlength="20" required ><br><br>
            </div>
            <div>
-                <p class="inline">Adress:</p> <input type="text" name="adres" required><br><br>
+                <p class="inline">Adress:</p> <input type="text" name="adres" maxlength="20"  required ><br><br>
            </div>
            <div>
-                <p class="inline">Postcode:</p> <input type="text" name="postcode" required><br><br>
+                <p class="inline">Postcode:</p> <input type="text" name="postcode" maxlength="20"  required ><br><br>
            </div>
            <div>
-                <p class="inline">Place:</p> <input type="text" name="plaats" resquired><br><br>
+                <p class="inline">Place:</p> <input type="text" name="plaats" maxlength="20"  required ><br><br>
            </div>
            <div>
                 <p class="inline">Deliver:</p> <input type="radio" name="bezorgen" value="bezorgen" required> <p class="inline">Pick up:</p> <input type="radio" name="bezorgen" value="afhalen"><br><br>
