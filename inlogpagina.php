@@ -16,14 +16,22 @@
 <body>
     <nav><h2>Pizzaria di preprocessore 🍕</h2> </nav>
     <h1>Please fill in your name and password</h1>
-    <div class="formdiv">
+    <div class="formdiv" action="inlogpagina.php">
         <form  method="POST">
             <label for="name">Name:</label>
             <input  type="text" minlength="0" maxlength="20" id="name" class="inlog-input" required>
             <label for="Pass">Password:</label>
             <input type="text"  minlength="0" maxlength="20"  id="Pass" class="inlog-input" required>
-            <input  class="inlog-input" type="submit">
+            <input  class="inlog-input" type="submit"name="submit2">
         </form>
     </div>
+    <?php 
+    if (isset($_POST["submit2"])) {
+        echo "ok lmao";
+
+    }
+    
+    
+    ?>
     </body>
 </html>
