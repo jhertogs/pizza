@@ -22,6 +22,9 @@ body {
 }
 
 nav{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
     height: 10vh;
     border-bottom: white solid;
     background-image: url('./imagess/Pizzaflag.png');
@@ -64,4 +67,9 @@ input {
 h1{
     text-align: center;
 
+}
+
+.registlink{
+
+    padding-right: 50px;
 }
