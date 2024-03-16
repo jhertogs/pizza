@@ -16,15 +16,7 @@
 <body>
     <nav><h2>Pizzaria di preprocessore 🍕</h2> </nav>
     <h1>Please fill in your name and password</h1>
-    <div class="formdiv" action="inlogpagina.php">
-        <form  method="POST">
-            <label for="name">Name:</label>
-            <input  type="text" minlength="0" maxlength="20" id="name" class="inlog-input" required name="username">
-            <label for="Pass">Password:</label>
-            <input type="text"  minlength="0" maxlength="20"  id="Pass" class="inlog-input" required name="password">
-            <input  class="inlog-input" type="submit"name="submit3">
-        </form>
-    </div>
+    
      
     <?php 
     
@@ -33,8 +25,9 @@
     $Username = "root";
     $Password = "";
     $dbname = "PizzaDB";
+    
 
-    if (isset($_POST["submit3"])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["submit3"])) {
         try{
             $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $Username, $Password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -47,11 +40,20 @@
             // Retrieve user input
             $username = $_POST['username'];
             $password = $_POST['password'];
-
             $hash = password_hash($password, PASSWORD_DEFAULT);
 
+            
+
         }
-            if (!empty($username) && !empty($password)) {
+        if (!empty($username) && !empty($password)) {
+            $sql = "SELECT * FROM users WHERE Username = :username";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            echo var_dump($user);
+
+            if (empty($user)) {
                 $sql = "INSERT INTO users (Username, Password) VALUES (:username, :hash)";
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(':username', $username, PDO::PARAM_STR);
@@ -59,16 +61,30 @@
                 
                 $stmt->execute();
                 header("Location: inlogpagina.php");
-                    exit();
-        } else {
+                exit();
+                } else {
+                    $error_message= " This username or password already exists!!!!";
+                } 
+            } else {
             $error_message = "invalid username";
-        }
-    }
-
-if (isset($error_message)){
-    echo $error_message;
-}
+            }
+        } 
     
+    ?>
+    <div class="formdiv" >
+        <form  method="POST" action="registerpagina.php">
+            <label for="name">Name:</label>
+            <input  type="text" minlength="0" maxlength="20" id="name" class="inlog-input" required name="username">
+            <label for="Pass">Password:</label>
+            <input type="text"  minlength="0" maxlength="20"  id="Pass" class="inlog-input" required name="password">
+            <input  class="inlog-input" type="submit" name="submit3">
+        </form>
+    </div>
+    <?php
+    
+        if (isset($error_message)){
+            echo $error_message;
+        }
     ?>
     </body>
 </html>
