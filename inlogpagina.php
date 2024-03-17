@@ -54,7 +54,7 @@
             // Check if username and password are not empty
             if (!empty($username) && !empty($password)) {
                 // Prepare SQL statement to retrieve user information
-                $stmt = $pdo->prepare("SELECT * FROM users WHERE Username = :username");
+                $stmt = $pdo->prepare("SELECT * FROM customers WHERE name = :username");
                 $stmt->execute(['username' => $username]);
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 //echo var_dump($user);
@@ -66,7 +66,7 @@
                     // Set session variables to indicate user is logged in
                     $_SESSION['User_id'] = $user['User_id'];
                     $_SESSION['Username'] = $user['Username'];
-                    
+
                     header("Location: index.php");
                     exit();
                 } else {
