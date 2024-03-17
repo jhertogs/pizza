@@ -32,32 +32,34 @@
             $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $Username, $Password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        }catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
+        }   catch(PDOException $e) {
+                echo $sql . "<br>" . $e->getMessage();
         }
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Retrieve user input
             $username = $_POST['username'];
             $password = $_POST['password'];
+            $adress = $_POST['adress'];
+            $postcode = $_POST['postcode'];
+            $place = $_POST['place'];
+
             $hash = password_hash($password, PASSWORD_DEFAULT);
-
-            
-
-        }
-        if (!empty($username) && !empty($password)) {
-            $sql = "SELECT * FROM users WHERE Username = :username";
+        
+       
+            $sql = "SELECT * FROM customers WHERE name = :username";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            echo var_dump($user);
+            //echo var_dump($user);
 
             if (empty($user)) {
-                $sql = "INSERT INTO users (Username, Password) VALUES (:username, :hash)";
+                $sql = "INSERT INTO customers (name, Password, address, postal_code, city) VALUES (:username, :hash, :adress, :postcode, :city)";
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(':username', $username, PDO::PARAM_STR);
                 $stmt->bindParam(':hash', $hash, PDO::PARAM_STR);
+                $stmt->bindParam(':adress', $adress, PDO::PARAM_STR);
+                $stmt->bindParam(':postcode', $postcode, PDO::PARAM_STR);
+                $stmt->bindParam(':city', $place, PDO::PARAM_STR);
                 
                 $stmt->execute();
                 header("Location: inlogpagina.php");
@@ -65,22 +67,22 @@
                 } else {
                     $error_message= " This username or password already exists!!!!";
                 } 
-            } else {
-            $error_message = "invalid username";
-            }
-        } 
-    
+    }
     ?>
     <div class="formdiv" >
         <form  method="POST" action="registerpagina.php">
             <label for="name">Name:</label>
             <input  type="text" minlength="0" maxlength="20" id="name" class="inlog-input" required name="username">
+
             <label for="Pass">Password:</label>
             <input type="text"  minlength="0" maxlength="20"  id="Pass" class="inlog-input" required name="password">
+
             <label for="Adres">Adress:</label>
             <input type="text"  minlength="0" maxlength="20"  id="Adres" class="inlog-input" required name="adress">
+
             <label for="Postcode">Postcode:</label>
             <input type="text"  minlength="0" maxlength="20"  id="Postcode" class="inlog-input" required name="postcode">
+
             <label for="Place">Place:</label>
             <input type="text"  minlength="0" maxlength="20"  id="Place" class="inlog-input" required name="place">
 
