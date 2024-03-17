@@ -77,6 +77,13 @@
             <input  type="text" minlength="0" maxlength="20" id="name" class="inlog-input" required name="username">
             <label for="Pass">Password:</label>
             <input type="text"  minlength="0" maxlength="20"  id="Pass" class="inlog-input" required name="password">
+            <label for="Adres">Adress:</label>
+            <input type="text"  minlength="0" maxlength="20"  id="Adres" class="inlog-input" required name="adress">
+            <label for="Postcode">Postcode:</label>
+            <input type="text"  minlength="0" maxlength="20"  id="Postcode" class="inlog-input" required name="postcode">
+            <label for="Place">Place:</label>
+            <input type="text"  minlength="0" maxlength="20"  id="Place" class="inlog-input" required name="place">
+
             <input  class="inlog-input" type="submit" name="submit3">
         </form>
     </div>

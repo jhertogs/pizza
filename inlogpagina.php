@@ -28,8 +28,8 @@
      
     <?php 
     session_start();
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+    //error_reporting(E_ALL);
+    //ini_set('display_errors', 1);
 
     $servername = "localhost";
     $Username = "root";
@@ -57,7 +57,7 @@
                 $stmt = $pdo->prepare("SELECT * FROM users WHERE Username = :username");
                 $stmt->execute(['username' => $username]);
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-                echo var_dump($user);
+                //echo var_dump($user);
                 //$hash= password_hash($user['Password'], PASSWORD_DEFAULT);
                 
         
@@ -66,9 +66,8 @@
                     // Set session variables to indicate user is logged in
                     $_SESSION['User_id'] = $user['User_id'];
                     $_SESSION['Username'] = $user['Username'];
-        
-                    // Redirect user to the dashboard or any other authenticated page
-                   header("Location: index.php");
+                    
+                    header("Location: index.php");
                     exit();
                 } else {
                     $error_message = "Invalid username or password";
