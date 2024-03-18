@@ -102,19 +102,8 @@
     <hr>
     <div class=info-center>
         <div class="user-info-form">
-        <h3 class="h3"> Please fill out this form.</h3>
-            <div>
-                <p class="inline">Name:</p> <input type="text" name="naam" maxlength="20" required ><br><br>
-           </div>
-           <div>
-                <p class="inline">Adress:</p> <input type="text" name="adres" maxlength="20"  required ><br><br>
-           </div>
-           <div>
-                <p class="inline">Postcode:</p> <input type="text" name="postcode" maxlength="20"  required ><br><br>
-           </div>
-           <div>
-                <p class="inline">Place:</p> <input type="text" name="plaats" maxlength="20"  required ><br><br>
-           </div>
+        <h3 class="h3"> Fill in to proceed.</h3>
+            
            <div>
                 <p class="inline">Deliver:</p> <input type="radio" name="bezorgen" value="bezorgen" required> <p class="inline">Pick up:</p> <input type="radio" name="bezorgen" value="afhalen"><br><br>
            </div>

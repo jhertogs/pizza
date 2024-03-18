@@ -64,8 +64,8 @@
                 // Verify if the user exists and the password is correct
                 if ($user && password_verify($password, $user['Password'])) {
                     // Set session variables to indicate user is logged in
-                    $_SESSION['User_id'] = $user['User_id'];
-                    $_SESSION['Username'] = $user['Username'];
+                    $_SESSION['costumer_id'] = $user['costumer_id'];
+                    $_SESSION['name'] = $user['name'];
 
                     header("Location: index.php");
                     exit();

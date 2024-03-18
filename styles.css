@@ -19,12 +19,21 @@ nav{
     background-size: 100vw;
     color:white; 
     display: flex;
+    justify-content:space-between;
     
     
     
 }
 .inloglink{
-    padding-left: 1330px;
+   margin-right: 50px;
+   margin-top: 20px;
+   background-color: whitesmoke;
+   height: 25px;
+   width: 65px;
+   border-radius: 10px;
+   border-width: 5px;
+   border-style: solid;
+   border-color: whitesmoke;
 }
 hr{
     color:white;

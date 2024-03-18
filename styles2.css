@@ -23,7 +23,6 @@ body {
 
 nav{
     display: flex;
-    flex-direction: row;
     justify-content:space-between;
     height: 10vh;
     border-bottom: white solid;
@@ -69,7 +68,15 @@ h1{
 
 }
 
-.registlink{
-
-    padding-right: 50px;
+.registlink {
+    margin-right: 50px;
+   margin-top: 20px;
+   background-color: whitesmoke;
+   height: 25px;
+   width: 65px;
+   border-radius: 10px;
+   border-width: 5px;
+   border-style: solid;
+   border-color: whitesmoke;
+   color:blue; 
 }
