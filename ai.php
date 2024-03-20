@@ -17,8 +17,12 @@
     <nav><h2>Pizzaria di preprocessore 🍕</h2> </nav>
 <?php
 session_start();
+
+
 // checkt wanneer je op submit drukt.
-if (isset($_SESSION)){
+if (isset($_SESSION["name"])){
+    echo var_dump($_SESSION);
+    
 
 
 
@@ -107,19 +111,19 @@ if (isset($_POST["submit"]) ) {
     }  catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
     }
-
+/*
     try {
-        $sql = "INSERT INTO Customers  date VALUES :date"; 
+        $sql = "INSERT INTO Customers  (date) VALUES (:datum)"; 
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':date', $datum, PDO::PARAM_STR);
+        $stmt->bindParam(':datum', $datum, PDO::PARAM_STR);
         $stmt->execute();
         $last_id = $pdo->lastInsertId();
         
     }catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
     }
-    
-
+    |||werkt natuurlijk niet omdat hij niet weet welke row die het in moet doen dus moet dat fixen|||
+*/
     try{
         $sql = "INSERT INTO orders (customer_id, total_cost) VALUES (:customer_id, :total_cost)";
         $stmt = $pdo->prepare($sql);
@@ -132,7 +136,7 @@ if (isset($_POST["submit"]) ) {
         echo $sql . "<br>" . $e->getMessage();
     }
 
-    $conn = null;
+    
    
     $pushBestelling = array ();
     $db_pizzas = "";
@@ -158,11 +162,12 @@ if (isset($_POST["submit"]) ) {
     }
     $username = $_SESSION["name"];
 
-    //hier bij de echo's een foreach loop doen die over de variables (user info) loopt en ze echo op de juiste plek(!!!!ONTHOUD DIT!!!)
+    
     try{
         $stmt = $pdo->prepare("SELECT * from customers WHERE name = :username ");
         $stmt->execute(['username' => $username]);
         $info = $stmt->fetch(PDO::FETCH_ASSOC);
+        //echo var_dump($info);
 
     } catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
@@ -178,10 +183,10 @@ if (isset($_POST["submit"]) ) {
 
     echo "<div class='textdiv1'>";
     echo"<p>";
-    echo "Your name: " . $naam . "<br> <br>";
-    echo "Your adress: " . $adres . "<br> <br>";
-    echo "Your postal code: " . $postcode . "<br> <br>";
-    echo "Your location: " . $plaats . "<br> <br>";
+    echo "Your name: " . $info['name'] . "<br> <br>";
+    echo "Your adress: " . $info['address'] . "<br> <br>";
+    echo "Your postal code: " . $info['postal_code'] . "<br> <br>";
+    echo "Your location: " . $info['city'] . "<br> <br>";
     echo "delivery or pick up: " . checkInput($_POST["bezorgen"]) .   "<br> <br>";
     echo "Your date: " . str_replace("T", " ", $datum) . " " . $day . "<br><br>";
     echo "<h3>Your pizza's: </h3>" . "<br> <br>";

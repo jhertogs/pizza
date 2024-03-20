@@ -12,7 +12,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fredericka+the+Great&display=swap" rel="stylesheet">
     </head>
 <body> 
-        <nav><h2>Pizzaria di preprocessore 🍕</h2> <a href="inlogpagina.php" class='inloglink'>Inloggen</a></nav>  
+        <nav><h2>Pizzaria di preprocessore 🍕</h2> <div class="inlog-uitlog"> <a href="inlogpagina.php" class='inloglink'>Inloggen</a> <a href="logout.php" class='inloglink'>Uitloggen</a></div></nav>  
         <h1 class='formtitle'>Our quality pizza's! </h1>
         <?php $day = date("l");
 

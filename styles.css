@@ -22,7 +22,11 @@ nav{
     justify-content:space-between;
     
     
-    
+}
+.inlog-uitlog{
+    display: flex;
+    justify-content:right;
+    margin: 0px;
 }
 .inloglink{
    margin-right: 50px;
