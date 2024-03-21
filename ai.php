@@ -21,7 +21,7 @@ session_start();
 
 // checkt wanneer je op submit drukt.
 if (isset($_SESSION["name"])){
-    echo var_dump($_SESSION);
+   // echo var_dump($_SESSION);
     
 
 
