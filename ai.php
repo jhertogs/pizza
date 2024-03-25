@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fredericka+the+Great&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav><h2>Pizzaria di preprocessore 🍕</h2> </nav>
+    <nav><h2>Pizzaria di preprocessore 🍕</h2> <a href="index.php" class='inloglink'>Terug</a> </nav>
 <?php
 session_start();
 
@@ -22,10 +22,6 @@ session_start();
 // checkt wanneer je op submit drukt.
 if (isset($_SESSION["name"])){
    // echo var_dump($_SESSION);
-    
-
-
-
 
 if (isset($_POST["submit"]) ) {
     // functie die ongewenste characters verwijderd
@@ -124,10 +120,11 @@ if (isset($_POST["submit"]) ) {
     }
     |||werkt natuurlijk niet omdat hij niet weet welke row die het in moet doen dus moet dat fixen|||
 */
+$customer_id = $_SESSION['customer_id'];
     try{
         $sql = "INSERT INTO orders (customer_id, total_cost) VALUES (:customer_id, :total_cost)";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':customer_id', $last_id, PDO::PARAM_STR);
+        $stmt->bindParam(':customer_id', $customer_id, PDO::PARAM_STR);
         $stmt->bindParam(':total_cost', $totalprice, PDO::PARAM_STR);
         $stmt->execute();
 

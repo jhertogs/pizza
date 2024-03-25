@@ -75,7 +75,7 @@
             <input  type="text" minlength="0" maxlength="20" id="name" class="inlog-input" required name="username">
 
             <label for="Pass">Password:</label>
-            <input type="text"  minlength="0" maxlength="20"  id="Pass" class="inlog-input" required name="password">
+            <input type="password"  minlength="0" maxlength="20"  id="Pass" class="inlog-input" required name="password">
 
             <label for="Adres">Adress:</label>
             <input type="text"  minlength="0" maxlength="20"  id="Adres" class="inlog-input" required name="adress">

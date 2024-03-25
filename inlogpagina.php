@@ -21,7 +21,7 @@
             <label for="name">Name:</label>
             <input  type="text" minlength="0" maxlength="20" id="name" class="inlog-input" required name="username">
             <label for="Pass">Password:</label>
-            <input type="text"  minlength="0" maxlength="20"  id="Pass" class="inlog-input" required name="password">
+            <input type="password"  minlength="0" maxlength="20"  id="Pass" class="inlog-input" required name="password">
             <input  class="inlog-input" type="submit"name="submit2">
         </form>
     </div>
@@ -64,7 +64,7 @@
                 // Verify if the user exists and the password is correct
                 if ($user && password_verify($password, $user['Password'])) {
                     // Set session variables to indicate user is logged in
-                    $_SESSION['costumer_id'] = $user['costumer_id'];
+                    $_SESSION['customer_id'] = $user['customer_id'];
                     $_SESSION['name'] = $user['name'];
 
                     header("Location: index.php");
