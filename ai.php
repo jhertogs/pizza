@@ -133,26 +133,27 @@ $customer_id = $_SESSION['customer_id'];
         echo $sql . "<br>" . $e->getMessage();
     }
 
-    
-   
-    $pushBestelling = array ();
-    $db_pizzas = "";
-    foreach ($pizzaDetails as $key => $pizza) {
-        if ( $_POST[$key] > 0) {
-            array_push($pushBestelling, $pizza['name'], $_POST[$key]);
+    $orderDetails = [];
+        //make new assoc array storing the pizza names and amounts ordered (does not store underorder pizzas)
+    foreach ($_POST as $key => $value) {
+        // Check if the key exists in $pizzaDetails
+        if (array_key_exists($key, $pizzaDetails) && $value > 0) {
+            // If it does, add the pizza name and quantity to $orderDetails
+            $pizzaName = $pizzaDetails[$key]['name']; //make new array with the pizza names (accesd by $key which is marg fung etc and then the name key which stores the names )
+            $orderDetails[$pizzaName] = $value;  //new array with the previous array as key assigned to the amounts of the pizzas that are ordered 
         }
     }
-    $db_pizzas= implode(" ", $pushBestelling);
 
     try {
-        $sql ="INSERT INTO ordered_pizzas (Pizzas, order_id) VALUES (:db_pizzas, :order_id)";
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->bindparam(':db_pizzas', $db_pizzas, PDO::PARAM_STR);
-        $stmt->bindparam(':order_id', $last_id2, PDO::PARAM_INT);
-
-        $stmt->execute();
-    
+        foreach ($orderDetails as $key => $amount_ordered){
+            $sql ="INSERT INTO ordered_pizzas (Pizzas, order_id, Amount, customer_id) VALUES (:pizzas, :order_id, :Amount, :customer_id)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindparam(':pizzas', $key, PDO::PARAM_STR);
+            $stmt->bindparam(':Amount', $amount_ordered, PDO::PARAM_INT);
+            $stmt->bindparam(':order_id', $last_id2, PDO::PARAM_INT);
+            $stmt->bindparam(':customer_id', $customer_id, PDO::PARAM_STR);
+            $stmt->execute();
+        }
 
     } catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
