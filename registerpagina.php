@@ -14,27 +14,14 @@
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fredericka+the+Great&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav><h2>Pizzaria di preprocessore 🍕</h2> </nav>
+    <nav><h2>Pizzaria di preprocessore 🍕</h2> <div class="inlog-uitlog"> <a href="index.php" class='inloglink'>Home</a></div> </nav>
+
     <h1>Please fill in your name and password</h1>
     
      
     <?php 
-    
-
-    $servername = "localhost";
-    $Username = "root";
-    $Password = "";
-    $dbname = "PizzaDB";
-    
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["submit3"])) {
-        try{
-            $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $Username, $Password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        }   catch(PDOException $e) {
-                echo $sql . "<br>" . $e->getMessage();
-        }
+        include 'connection.php';
             // Retrieve user input
             $username = $_POST['username'];
             $password = $_POST['password'];

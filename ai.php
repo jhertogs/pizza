@@ -102,19 +102,8 @@ if (isset($_POST["submit"], $_SESSION['name']) ) {
         $totalprice = array_sum($prices) + $bezorgen;
         $korting_msg = "<p class='kortingmsg'> Friday all pizza's 15% discount (with orders above 20$)</p>";
     }
+    include 'connection.php';
     
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "PizzaDB";
-
-    try {
-        $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        // set the PDO error mode to exception
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }  catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
-    }
     /*
     try {
         $sql = "INSERT INTO Customers  (date) VALUES (:datum)"; 

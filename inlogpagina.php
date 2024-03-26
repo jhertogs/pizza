@@ -30,20 +30,10 @@
     session_start();
     //error_reporting(E_ALL);
     //ini_set('display_errors', 1);
-
-    $servername = "localhost";
-    $Username = "root";
-    $Password = "";
-    $dbname = "PizzaDB";
+    //checkInput ();
 
     if (isset($_POST["submit2"])) {
-        try{
-            $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $Username, $Password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        }catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
-        }
+        include 'connection.php';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Retrieve user input
@@ -60,14 +50,22 @@
                 //echo var_dump($user);
                 //$hash= password_hash($user['Password'], PASSWORD_DEFAULT);
                 
-        
+                if ($user['name'] === "xXGOD_OF_P1ZZAXx" && password_verify($password, $user['Password'] )){
+                    $_SESSION['customer_id'] = $user['customer_id'];
+                    $_SESSION['name'] = $user['name'];
+                    $_SESSION['start'] = time();
+                    $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
+                    header("Location: admin.php");
+                    exit();
+
+                }
                 // Verify if the user exists and the password is correct
                 if ($user && password_verify($password, $user['Password'])) {
                     // Set session variables to indicate user is logged in
                     $_SESSION['customer_id'] = $user['customer_id'];
                     $_SESSION['name'] = $user['name'];
                     $_SESSION['start'] = time();
-                    $_SESSION['expire'] = $_SESSION['start'] + (10 * 60);
+                    $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
 
                     header("Location: index.php");
                     exit();

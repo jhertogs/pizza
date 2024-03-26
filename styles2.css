@@ -18,6 +18,8 @@ body {
     background-size: 111%;
     background-repeat: repeat-y;
     font-family: 'Fredericka the Great', serif;
+
+
     
 }
 
@@ -93,3 +95,14 @@ h1{
     border-color: whitesmoke;
     color:blue;
  }
+
+ .inlog-uitlog{
+    display: flex;
+    justify-content:right;
+    margin: 0px;
+}
+
+.epicpiz{
+    display: flex;
+    justify-content: center;
+}
