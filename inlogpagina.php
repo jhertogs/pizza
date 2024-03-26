@@ -66,6 +66,8 @@
                     // Set session variables to indicate user is logged in
                     $_SESSION['customer_id'] = $user['customer_id'];
                     $_SESSION['name'] = $user['name'];
+                    $_SESSION['start'] = time();
+                    $_SESSION['expire'] = $_SESSION['start'] + (10 * 60);
 
                     header("Location: index.php");
                     exit();

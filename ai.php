@@ -17,24 +17,32 @@
     <nav><h2>Pizzaria di preprocessore 🍕</h2> <a href="index.php" class='inloglink'>Terug</a> </nav>
 <?php
 session_start();
-
+include 'array.php';
 
 // checkt wanneer je op submit drukt.
-if (isset($_SESSION["name"])){
+//if (isset($_SESSION["name"])){
    // echo var_dump($_SESSION);
-
-if (isset($_POST["submit"]) ) {
-    // functie die ongewenste characters verwijderd
+$now = time();
+    if ($now > $_SESSION['expire']){
+        session_destroy();
+        echo "<h1>SESSION EXPIRED!</h1>";
+        exit;
+    }
     function checkInput($input) {
         $input = trim($input);
         $input = stripslashes($input);
         $input = htmlspecialchars($input);
         return $input;
     }
+if (isset($_POST["submit"], $_SESSION['name']) ) { 
+    // functie die ongewenste characters verwijderd
+    
+
+    //make session expire
     
 
     // Een multidimensional, associetive array die alle pizza informatie bewaardt
-    include 'array.php';
+    
 
     // variabelen die user input bewaren
     $datum = checkInput($_POST["datum"]);
@@ -107,7 +115,7 @@ if (isset($_POST["submit"]) ) {
     }  catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
     }
-/*
+    /*
     try {
         $sql = "INSERT INTO Customers  (date) VALUES (:datum)"; 
         $stmt = $pdo->prepare($sql);
@@ -119,13 +127,14 @@ if (isset($_POST["submit"]) ) {
         echo $sql . "<br>" . $e->getMessage();
     }
     |||werkt natuurlijk niet omdat hij niet weet welke row die het in moet doen dus moet dat fixen|||
-*/
-$customer_id = $_SESSION['customer_id'];
+    */
+    $customer_id = $_SESSION['customer_id'];
     try{
-        $sql = "INSERT INTO orders (customer_id, total_cost) VALUES (:customer_id, :total_cost)";
+        $sql = "INSERT INTO orders (customer_id, total_cost, datum) VALUES (:customer_id, :total_cost, :datum)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':customer_id', $customer_id, PDO::PARAM_STR);
         $stmt->bindParam(':total_cost', $totalprice, PDO::PARAM_STR);
+        $stmt->bindParam(':datum', $datum, PDO::PARAM_STR);
         $stmt->execute();
 
         $last_id2 = $pdo->lastInsertId();
@@ -141,8 +150,7 @@ $customer_id = $_SESSION['customer_id'];
             // If it does, add the pizza name and quantity to $orderDetails
             $pizzaName = $pizzaDetails[$key]['name']; //make new array with the pizza names (accesd by $key which is marg fung etc and then the name key which stores the names )
             $orderDetails[$pizzaName] = $value;  //new array with the previous array as key assigned to the amounts of the pizzas that are ordered 
-        }
-    }
+    }}
 
     try {
         foreach ($orderDetails as $key => $amount_ordered){
@@ -163,9 +171,10 @@ $customer_id = $_SESSION['customer_id'];
     
     try{
         $stmt = $pdo->prepare("SELECT * from customers WHERE name = :username ");
-        $stmt->execute(['username' => $username]);
+        $stmt->execute([':username' => $username]);
         $info = $stmt->fetch(PDO::FETCH_ASSOC);
-        //echo var_dump($info);
+        
+
 
     } catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
@@ -199,9 +208,8 @@ $customer_id = $_SESSION['customer_id'];
 
     echo "<div class='textdiv2'>";
     echo "Total price: " . number_format($totalprice, 2, ",", ".") . " " . $bezorg_msg;
-    echo "</div>";
-} 
-}else {
+    echo "</div>"; 
+} else {
     echo "<h1>Log in to order!</h1>". "<br>";
     echo "<a href='index.php'>Go back to homepage</a>";
 }
