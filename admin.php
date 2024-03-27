@@ -23,30 +23,73 @@
     include 'array.php';
     include 'connection.php';
     
+    echo "<form method='POST'>";
     echo "<div class='admintable'>";
     echo "<table>";
     echo "<tr class='table'>";
-
-     
     echo "<th class='table'>code</th>";
     echo "<th class='table'>name</th>";
     echo "<th class='table'>price</th>";
+    echo "<th class='table'></th>";
     echo "</tr>";
      
     foreach ($pizzaDetails as $key => $pizza ){
     echo "<tr class='table'>";
-    echo "<td>".$key."</td>";
-    echo "<td>".$pizza['name']."</td>";
-    echo "<td>".$pizza['price']."$"."</td>";
-    
+    echo "<td class='table'>".$key."</td>";
+    echo "<td class='table'>".$pizza['name']."</td>";
+    echo "<td class='table'>".$pizza['price']."$"."</td>";
+    echo "<td class='table'>"."<input type='submit' value='edit' class='edits' name='".$key."'>"."</td>";
     echo "</tr>";
-}
+} 
+   
     echo "</table>";
     echo "</div>";
-
-    //echo var_dump($pizzaDetails);
-    ?>
+    echo "</form>";
     
+    
+    echo "<table>";
+    echo "<tr class='table'>";
+    echo "<th class='table'>Edit code</th>";
+    echo "<th class='table'>Edit name</th>";
+    echo "<th class='table'>Edit price</th>";
+    echo "</tr>";
+    echo "<form method='POST'>";
+    foreach($pizzaDetails as $key => $pizza){
+        if (isset($_POST[$key])){
+            echo "<tr class='table'>";
+            echo "<p>Edit"." ". $pizza['name']."</p>";
+            echo "<td>"."<input type='text' name='code'>". "</td>";
+            echo "<td><input type='text' name='pizname'></td>";
+            echo "<td><input type='text' name='price'></td>";
+            echo "<input type='submit' name='editsubmit'";
+            echo "</tr>";
+            echo "</form>";
+            if (isset($_POST['editsubmit'])){
+                echo var_dump($_POST['editsubmit']);
+                $newCode = $_POST['code'];
+                $newName = $_POST['pizname'];
+                $newPrice = $_POST['price'];
+                /*
+                try{
+                    $sql = "UPDATE your_table_name SET code = :new_code, name = :new_name, price = :new_price WHERE condition_to_select_specific_rows";
+                    $stmt = $pdo->prepare();
+                    $stmt->bindParam(':new_code', $newCode);
+                    $stmt->bindParam(':new_name', $newName);
+                    $stmt->bindParam(':new_price', $newPrice);
+                    
+                    
+
+                }catch(PDOException $e) {
+                 echo $sql . "<br>" . $e->getMessage();
+                }*/
+            }
+        }
+    }
+    
+   echo "</table>";
+   
+    ?>
+
 
 
 </body>

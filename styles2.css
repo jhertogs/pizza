@@ -119,4 +119,8 @@ h1{
     border-style: solid;
     border-color: white;
     border-width: 3px;
+    
+}
+.edits {
+    margin-top: 50px;
 }
