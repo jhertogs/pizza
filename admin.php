@@ -22,6 +22,12 @@
     session_start();
     include 'array.php';
     include 'connection.php';
+    function checkInput($input) {
+        $input = trim($input);
+        $input = stripslashes($input);
+        $input = htmlspecialchars($input);
+        return $input;
+    }
     
     echo "<form method='POST'>";
     echo "<div class='admintable'>";
@@ -46,17 +52,14 @@
 }
     echo "</table>";
     echo "</div>";
-
     echo "</form>";
 
-    
-    
-   
+    echo "<div class='admintable'>";
     echo "<form method='POST'>";
     foreach($pizzaDetails as $key => $pizza){
         //check which submit button is pressed (so which key in $_POST has been set)
         if (isset($_POST[$key])){
-            $oldcode = $_POST[$key]; //stores the previous code of the selected pizza the admin  wants to edit
+            $oldcode = checkInput($_POST[$key]); //stores the previous code of the selected pizza the admin  wants to edit
             echo "<table>";
             echo "<tr class='table'>";
             echo "<th class='table'>Edit code</th>";
@@ -69,37 +72,67 @@
             echo "<td>"."<input type='hidden' name='oldcode' value='".$oldcode."'><input type='text' name='code'>". "</td>";
             echo "<td><input type='text' name='pizname'></td>";
             echo "<td><input type='text' name='price'></td>";
-            echo "<input type='submit' name='editsubmit'";
+            echo "<input type='submit' name='REMOVE' value='REMOVE'". $pizza['name']. ">";
+            echo "<input type='submit' name='ADD' value='ADD'". $pizza['name']. ">";
+            
+            echo "<input type='submit' name='editsubmit'>"; 
             echo "</tr>";
             echo "</form>";
         }
-    }
-            if (isset($_POST['editsubmit'])){
-                $oldcode = $_POST['oldcode']; // Retrieve old code of selected pizza admin wants to edit
-                $newCode = $_POST['code'];
-                $newName = $_POST['pizname'];
-                $newPrice = $_POST['price'];
-               
-                
-                try{
-                    $sql = "UPDATE pizzas SET code = :new_code, name = :new_name, price = :new_price WHERE code = :old_code";
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->bindparam(':old_code', $oldcode, PDO::PARAM_STR);
-                    $stmt->bindParam(':new_code', $newCode, PDO::PARAM_STR);
-                    $stmt->bindParam(':new_name', $newName, PDO::PARAM_STR);
-                    $stmt->bindParam(':new_price', $newPrice, PDO::PARAM_INT);
-                    $stmt->execute();
-                    
-                    
+    }       
 
-                }catch(PDOException $e) {
-                 echo $sql . "<br>" . $e->getMessage();
-                }
-            }
-        
-    
-    
+    /*
+    if( isset($_POST['ADD']) ){
+         $oldcode = checkInput($_POST['oldcode']); // Retrieve old code of selected pizza admin wants to edit
+        try{
+            $sql="INSERT INTO pizzas (code, name, price) VALUES (:) WHERE code = :old_code ";
+            $stmt= $pdo->prepare($sql);
+            $stmt->bindParam(':old_code', $oldcode, PDO::PARAM_STR);
+            $stmt->execute();
+            exit();
+        }catch(PDOException $e) {
+            echo $sql . "<br>" . $e->getMessage();
+           }
+        }
+    */
+    //will finish pizza add fucntion later
+    if( isset($_POST['REMOVE']) ){
+        $oldcode = checkInput($_POST['oldcode']); // Retrieve old code of selected pizza admin wants to edit
+       try{
+           $sql="DELETE FROM pizzas WHERE code = :old_code ";
+           $stmt= $pdo->prepare($sql);
+           $stmt->bindParam(':old_code', $oldcode, PDO::PARAM_STR);
+           $stmt->execute();
+           exit();
+       }catch(PDOException $e) {
+           echo $sql . "<br>" . $e->getMessage();
+          }
+       }
+
+    if (isset($_POST['editsubmit'])){
+        $oldcode = checkInput($_POST['oldcode']); // Retrieve old code of selected pizza admin wants to edit
+        $newCode = checkInput($_POST['code']);
+        $newName = checkInput($_POST['pizname']);
+        $newPrice = checkInput($_POST['price']);
+        if (!empty($newCode && $newName && $newPrice) && is_numeric($newPrice)){
+            try{
+                $sql = "UPDATE pizzas SET code = :new_code, name = :new_name, price = :new_price WHERE code = :old_code";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindparam(':old_code', $oldcode, PDO::PARAM_STR);
+                $stmt->bindParam(':new_code', $newCode, PDO::PARAM_STR);
+                $stmt->bindParam(':new_name', $newName, PDO::PARAM_STR);
+                $stmt->bindParam(':new_price', $newPrice, PDO::PARAM_INT);
+                $stmt->execute();
+            }catch(PDOException $e) {
+             echo $sql . "<br>" . $e->getMessage();
+            } 
+        }else{
+            echo "<p class='idiot'>INVALID INPUT!!!! -_-</p>";
+            
+        }
+    }
    echo "</table>";
+   echo "</div>";
    
     ?>
 

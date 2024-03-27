@@ -114,6 +114,7 @@ h1{
 .admintable {
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 .table {
     border-style: solid;
@@ -123,4 +124,13 @@ h1{
 }
 .edits {
     margin-top: 50px;
+}
+
+.idiot{
+    color:red;
+    font-size:30px;
+}
+.remove {
+    color:red;
+    font-size:15px;
 }
