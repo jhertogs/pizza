@@ -33,58 +33,71 @@
     echo "<th class='table'></th>";
     echo "</tr>";
      
+
+    //makes tables with all the codes, names and prices of the pizzas in pizzaDetails array
+    //input type submit is all the codes of the pizzaDetails array
     foreach ($pizzaDetails as $key => $pizza ){
     echo "<tr class='table'>";
     echo "<td class='table'>".$key."</td>";
     echo "<td class='table'>".$pizza['name']."</td>";
     echo "<td class='table'>".$pizza['price']."$"."</td>";
-    echo "<td class='table'>"."<input type='submit' value='edit' class='edits' name='".$key."'>"."</td>";
+    echo "<td class='table'>"."<input type='submit' value='".$key."' class='edits' name='".$key."'>"."</td>";
     echo "</tr>";
-} 
-   
+}
     echo "</table>";
     echo "</div>";
+
     echo "</form>";
+
     
     
-    echo "<table>";
-    echo "<tr class='table'>";
-    echo "<th class='table'>Edit code</th>";
-    echo "<th class='table'>Edit name</th>";
-    echo "<th class='table'>Edit price</th>";
-    echo "</tr>";
+   
     echo "<form method='POST'>";
     foreach($pizzaDetails as $key => $pizza){
+        //check which submit button is pressed (so which key in $_POST has been set)
         if (isset($_POST[$key])){
+            $oldcode = $_POST[$key]; //stores the previous code of the selected pizza the admin  wants to edit
+            echo "<table>";
+            echo "<tr class='table'>";
+            echo "<th class='table'>Edit code</th>";
+            echo "<th class='table'>Edit name</th>";
+            echo "<th class='table'>Edit price</th>";
+            echo "</tr>";
+
             echo "<tr class='table'>";
             echo "<p>Edit"." ". $pizza['name']."</p>";
-            echo "<td>"."<input type='text' name='code'>". "</td>";
+            echo "<td>"."<input type='hidden' name='oldcode' value='".$oldcode."'><input type='text' name='code'>". "</td>";
             echo "<td><input type='text' name='pizname'></td>";
             echo "<td><input type='text' name='price'></td>";
             echo "<input type='submit' name='editsubmit'";
             echo "</tr>";
             echo "</form>";
+        }
+    }
             if (isset($_POST['editsubmit'])){
-                echo var_dump($_POST['editsubmit']);
+                $oldcode = $_POST['oldcode']; // Retrieve old code of selected pizza admin wants to edit
                 $newCode = $_POST['code'];
                 $newName = $_POST['pizname'];
                 $newPrice = $_POST['price'];
-                /*
+               
+                
                 try{
-                    $sql = "UPDATE your_table_name SET code = :new_code, name = :new_name, price = :new_price WHERE condition_to_select_specific_rows";
-                    $stmt = $pdo->prepare();
-                    $stmt->bindParam(':new_code', $newCode);
-                    $stmt->bindParam(':new_name', $newName);
-                    $stmt->bindParam(':new_price', $newPrice);
+                    $sql = "UPDATE pizzas SET code = :new_code, name = :new_name, price = :new_price WHERE code = :old_code";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindparam(':old_code', $oldcode, PDO::PARAM_STR);
+                    $stmt->bindParam(':new_code', $newCode, PDO::PARAM_STR);
+                    $stmt->bindParam(':new_name', $newName, PDO::PARAM_STR);
+                    $stmt->bindParam(':new_price', $newPrice, PDO::PARAM_INT);
+                    $stmt->execute();
                     
                     
 
                 }catch(PDOException $e) {
                  echo $sql . "<br>" . $e->getMessage();
-                }*/
+                }
             }
-        }
-    }
+        
+    
     
    echo "</table>";
    
