@@ -106,3 +106,17 @@ h1{
     display: flex;
     justify-content: center;
 }
+
+.adminh2 {
+    font-size: 50px;
+    text-align: center;
+}
+.admintable {
+    display: flex;
+    justify-content: center;
+}
+.table {
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
+}

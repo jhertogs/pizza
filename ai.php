@@ -162,9 +162,6 @@ if (isset($_POST["submit"], $_SESSION['name']) ) {
         $stmt = $pdo->prepare("SELECT * from customers WHERE name = :username ");
         $stmt->execute([':username' => $username]);
         $info = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-
-
     } catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
     }

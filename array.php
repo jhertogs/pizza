@@ -1,20 +1,15 @@
 <?php 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "PizzaDB";
+include 'connection.php';
 
 try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // set the PDO error mode to exception
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
     $sql = "SELECT code, name, price FROM pizzas";
     $stmt = $pdo->query($sql);
 
     $pizzaDetails = [];
     if ($stmt->rowCount() > 0) {
+        //this loop works becuase fetch fetches only 1 row at a time and returns FALSE if there are no more
+        //rows to fetch so it will fetch all the rows and then stop
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $pizzaDetails[$row['code']] = ['name' => $row['name'], 'price' => $row['price']];
         }
