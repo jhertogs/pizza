@@ -28,7 +28,80 @@
         $input = htmlspecialchars($input);
         return $input;
     }
+    echo "<div class='admintable'>";
+    echo "<form method='POST'>";
+    echo "<input type='submit' name='ADD' value='ADD_PIZZA'>";
+    echo "</form>";
+    echo "</div>";
+
     
+    if( isset($_POST['ADD']) ){
+        echo "<div class='admintable'>";
+        echo "<form method='POST'>";
+        echo "<table>";
+
+        echo "<tr class='table'>";
+        echo "<th class='table'>code</th>";
+        echo "<th class='table'>name</th>";
+        echo "<th class='table'>price</th>";
+        echo "</tr>";
+
+        echo "<tr class='table'>";
+        echo "<p>Add new pizza</p>";
+        echo "<td><input type='text' name='addcode'></td>";
+        echo "<td><input type='text' name='addname'></td>";
+        echo "<td><input type='text' name='addprice'></td>";
+        echo "<td><input type='submit' name='submit_add'></td>";
+        echo "</tr>";
+
+        echo "</table>";
+        echo "</form>";
+        echo"</div>";
+
+
+
+        
+        
+    }
+    if (isset($_POST['submit_add'])){
+            $addCode = checkInput($_POST['addcode']);
+            $addName = checkInput($_POST['addname']);
+            $addPrice = checkInput($_POST['addprice']);
+            $addCode = trim($addCode);
+
+
+            $sql_check = "SELECT COUNT(*) FROM pizzas WHERE code = :code";
+            $stmt_check = $pdo->prepare($sql_check);
+            $stmt_check->bindParam(':code', $addCode, PDO::PARAM_STR);
+            $stmt_check->execute();
+            $count = $stmt_check->fetchColumn();
+            if ($count > 0) {
+                echo "<p class='error'>Error: Pizza code already exists. Please choose a different code.</p>";
+            } else {
+         
+        try{
+            $sql="INSERT INTO pizzas (code, name, price) VALUES (:code, :name, :price)";
+            $stmt= $pdo->prepare($sql);
+            $stmt->bindParam(':code', $addCode, PDO::PARAM_STR);
+            $stmt->bindParam(':name', $addName, PDO::PARAM_STR);
+            $stmt->bindParam(':price', $addPrice, PDO::PARAM_INT);
+            $stmt->execute();
+            header("Location: update.php");
+            
+        }catch (PDOException $e) {
+            if ($e->errorInfo[1] === 1062) {
+                echo "<p class='error'>Error: Pizza code already exists. Please choose a different code.</p>";
+            } else {
+                echo "<p class='error'>Error: " . $e->getMessage() . "</p>";
+            }
+            // Output additional debugging information
+            echo "<p class='error'>Debugging: " . $addCode . ", " . $addName . ", " . $addPrice . "</p>";
+            echo "<pre>" . print_r($_POST, true) . "</pre>";
+         }
+        }
+    }
+    //will finish pizza add fucntion later
+
     echo "<form method='POST'>";
     echo "<div class='admintable'>";
     echo "<table>";
@@ -36,7 +109,7 @@
     echo "<th class='table'>code</th>";
     echo "<th class='table'>name</th>";
     echo "<th class='table'>price</th>";
-    echo "<th class='table'></th>";
+    echo "<th class='table'>edit pizzas</th>";
     echo "</tr>";
      
 
@@ -48,8 +121,10 @@
     echo "<td class='table'>".$pizza['name']."</td>";
     echo "<td class='table'>".$pizza['price']."$"."</td>";
     echo "<td class='table'>"."<input type='submit' value='".$key."' class='edits' name='".$key."'>"."</td>";
-    echo "</tr>";
+    
 }
+   
+    echo "</tr>";
     echo "</table>";
     echo "</div>";
     echo "</form>";
@@ -73,7 +148,7 @@
             echo "<td><input type='text' name='pizname'></td>";
             echo "<td><input type='text' name='price'></td>";
             echo "<input type='submit' name='REMOVE' value='REMOVE'". $pizza['name']. ">";
-            echo "<input type='submit' name='ADD' value='ADD'". $pizza['name']. ">";
+            
             
             echo "<input type='submit' name='editsubmit'>"; 
             echo "</tr>";
@@ -81,21 +156,7 @@
         }
     }       
 
-    /*
-    if( isset($_POST['ADD']) ){
-         $oldcode = checkInput($_POST['oldcode']); // Retrieve old code of selected pizza admin wants to edit
-        try{
-            $sql="INSERT INTO pizzas (code, name, price) VALUES (:) WHERE code = :old_code ";
-            $stmt= $pdo->prepare($sql);
-            $stmt->bindParam(':old_code', $oldcode, PDO::PARAM_STR);
-            $stmt->execute();
-            exit();
-        }catch(PDOException $e) {
-            echo $sql . "<br>" . $e->getMessage();
-           }
-        }
-    */
-    //will finish pizza add fucntion later
+    
     if( isset($_POST['REMOVE']) ){
         $oldcode = checkInput($_POST['oldcode']); // Retrieve old code of selected pizza admin wants to edit
        try{
@@ -125,7 +186,7 @@
                 $stmt->execute();
             }catch(PDOException $e) {
              echo $sql . "<br>" . $e->getMessage();
-            } 
+            }
         }else{
             echo "<p class='idiot'>INVALID INPUT!!!! -_-</p>";
             
