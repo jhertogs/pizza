@@ -63,7 +63,7 @@
         
         
     }
-    if (isset($_POST['submit_add'])){
+    if (isset($_POST['submit_add']) && $_POST['addcode'] && $_POST['addname'] && $_POST['addprice']){
             $addCode = checkInput($_POST['addcode']);
             $addName = checkInput($_POST['addname']);
             $addPrice = checkInput($_POST['addprice']);
@@ -100,6 +100,7 @@
          }
         }
     }
+        
     //will finish pizza add fucntion later
 
     echo "<form method='POST'>";
@@ -171,7 +172,7 @@
           }
        }
 
-    if (isset($_POST['editsubmit'])){
+    if (isset($_POST['editsubmit']) && $_POST['code'] && $_POST['pizname'] && $_POST['price']){
         $oldcode = checkInput($_POST['oldcode']); // Retrieve old code of selected pizza admin wants to edit
         $newCode = checkInput($_POST['code']);
         $newName = checkInput($_POST['pizname']);

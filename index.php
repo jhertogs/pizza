@@ -29,7 +29,7 @@
                         echo "<p class='kortingmsg'> Friday all pizza's 15% discount (with orders above 20$)</p>";
                     }
             ?>
-        <form class="form" action="ai.php" method="post"> 
+        <form class="form" action="order.php" method="post"> 
             <div class="centerformdiv">
                 <div class="formdiv">
                     <?php 

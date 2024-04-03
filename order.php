@@ -19,9 +19,6 @@
 session_start();
 include 'array.php';
 
-// checkt wanneer je op submit drukt.
-//if (isset($_SESSION["name"])){
-   // echo var_dump($_SESSION);
 $now = time();
     if ($now > $_SESSION['expire']){
         session_destroy();
@@ -35,16 +32,6 @@ $now = time();
         return $input;
     }
 if (isset($_POST["submit"], $_SESSION['name']) ) { 
-    // functie die ongewenste characters verwijderd
-    
-
-    //make session expire
-    
-
-    // Een multidimensional, associetive array die alle pizza informatie bewaardt
-    
-
-    // variabelen die user input bewaren
     $datum = checkInput($_POST["datum"]);
 
     
