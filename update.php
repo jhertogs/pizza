@@ -15,7 +15,7 @@
 </head>
 <body>
     <nav><h2>Pizzaria di preprocessore 🍕</h2><a href="index.php" class='inloglink'>Home</a><a href="admin.php">Terug</a></div> </nav>
-    <h1>Added new pizza succesfully!!</h1>
+    <h1>Edited pizza table succesfully!!</h1>
     <a href="admin.php">Terug naar admin pagina</a>
     <a href="index.php" class='inloglink'>Terug naar home pagina</a>
     </body>

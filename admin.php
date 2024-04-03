@@ -164,6 +164,7 @@
            $stmt= $pdo->prepare($sql);
            $stmt->bindParam(':old_code', $oldcode, PDO::PARAM_STR);
            $stmt->execute();
+           header("Location: update.php");
            exit();
        }catch(PDOException $e) {
            echo $sql . "<br>" . $e->getMessage();
@@ -184,6 +185,7 @@
                 $stmt->bindParam(':new_name', $newName, PDO::PARAM_STR);
                 $stmt->bindParam(':new_price', $newPrice, PDO::PARAM_INT);
                 $stmt->execute();
+                header("Location: update.php");
             }catch(PDOException $e) {
              echo $sql . "<br>" . $e->getMessage();
             }
