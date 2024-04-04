@@ -18,5 +18,8 @@
     <h1>Edited pizza table succesfully!!</h1>
     <a href="admin.php">Terug naar admin pagina</a>
     <a href="index.php" class='inloglink'>Terug naar home pagina</a>
+    <footer> 
+        <?php $year = date('Y'); echo "<h5 class='footh5'>©JH All rights reserved."."  " .$year."</h5>"; ?>
+    </footer>
     </body>
 </html>

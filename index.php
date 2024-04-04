@@ -72,7 +72,7 @@
         </div>    
         </form>
         <footer>
-            <?php echo "<h5 class='footh5'>©I2 All rights reserved."."  " .$year."</h5>"; ?>
+            <?php echo "<h5 class='footh5'>©JH All rights reserved."."  " .$year."</h5>"; ?>
         </footer>
     </body>
 </html>

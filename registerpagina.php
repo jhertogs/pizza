@@ -82,5 +82,8 @@
             echo $error_message;
         }
     ?>
+    <footer> 
+        <?php $year = date('Y'); echo "<h5 class='footh5'>©JH All rights reserved."."  " .$year."</h5>"; ?>
+    </footer>
     </body>
 </html>
