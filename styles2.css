@@ -152,7 +152,11 @@ footer {
     font-size:medium;
 }
 
-.edit_table{
-    
-
+.fdiv {
+    margin-top: 80vh;
+}
+.linkdiv {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
 }

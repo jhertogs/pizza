@@ -50,7 +50,7 @@
                 //echo var_dump($user);
                 //$hash= password_hash($user['Password'], PASSWORD_DEFAULT);
                 
-                if ($user['name'] === "xXGOD_OF_P1ZZAXx" && password_verify($password, $user['Password'] )){
+                if ($user !== false && $user['name'] === "xXGOD_OF_P1ZZAXx" && password_verify($password, $user['Password'])){
                     $_SESSION['customer_id'] = $user['customer_id'];
                     $_SESSION['name'] = $user['name'];
                     $_SESSION['start'] = time();

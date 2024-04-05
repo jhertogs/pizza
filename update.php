@@ -14,12 +14,16 @@
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fredericka+the+Great&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav><h2>Pizzaria di preprocessore 🍕</h2><a href="index.php" class='inloglink'>Home</a><a href="admin.php">Terug</a></div> </nav>
+    <nav><h2>Pizzaria di preprocessore 🍕</h2><div class="inlog-input"><a href="index.php" class='inloglink'>Home</a><a class="inloglink" href="admin.php">Terug</a></div> </nav>
     <h1>Edited pizza table succesfully!!</h1>
-    <a href="admin.php">Terug naar admin pagina</a>
-    <a href="index.php" class='inloglink'>Terug naar home pagina</a>
+<div class="linkdiv">
+    <a href="admin.php" class="inloglink">Admin</a>
+    <a href="index.php" class='inloglink'>Home</a>
+</div>
+<div class="fdiv">
     <footer> 
         <?php $year = date('Y'); echo "<h5 class='footh5'>©JH All rights reserved."."  " .$year."</h5>"; ?>
     </footer>
+</div>
     </body>
 </html>

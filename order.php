@@ -91,19 +91,6 @@ if (isset($_POST["submit"], $_SESSION['name']) ) {
     }
     include 'connection.php';
     
-    /*
-    try {
-        $sql = "INSERT INTO Customers  (date) VALUES (:datum)"; 
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':datum', $datum, PDO::PARAM_STR);
-        $stmt->execute();
-        $last_id = $pdo->lastInsertId();
-        
-    }catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
-    }
-    |||werkt natuurlijk niet omdat hij niet weet welke row die het in moet doen dus moet dat fixen|||
-    */
     $customer_id = $_SESSION['customer_id'];
     try{
         $sql = "INSERT INTO orders (customer_id, total_cost, datum) VALUES (:customer_id, :total_cost, :datum)";

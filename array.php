@@ -12,6 +12,8 @@ try {
         //rows to fetch so it will fetch all the rows and then stop
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $pizzaDetails[$row['code']] = ['name' => $row['name'], 'price' => $row['price']];
+            // array with all the codes that are keys for another assoc array with 2 keys:
+            // name and price that are for 2 arrays containing the names and prices of the pizzas
         }
     }
 } catch(PDOException $e) {
